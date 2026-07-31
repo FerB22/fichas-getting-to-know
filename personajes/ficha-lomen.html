@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Personaje - Lomen</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%;
+            margin: 0;
+            padding: 20px 10px;
+            background-color: #081c15;
+            font-family: Georgia, serif;
+            color: #2d6a4f;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow-x: hidden;
+        }
+        .tarjeta-contenedor {
+            width: 100%;
+            max-width: 450px;
+            background-color: #f4f9f4;
+            background-image: radial-gradient(circle at 10% 20%, rgba(82, 183, 136, 0.08) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(45, 106, 79, 0.06) 0%, transparent 45%);
+            border-radius: 6px;
+            border: 2px solid #2d6a4f;
+            box-shadow: 0 0 0 6px rgba(45, 106, 79, 0.15), 0 8px 32px rgba(0, 0, 0, 0.4);
+            padding: 28px 24px 22px 24px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .titulo-personaje {
+            margin: 0;
+            font-size: 26px;
+            font-family: Georgia, serif;
+            color: #1b4332;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(45, 106, 79, 0.2);
+        }
+        @media (max-width: 480px) {
+            .tarjeta-contenedor {
+                padding: 20px 16px 16px 16px !important;
+            }
+            .titulo-personaje {
+                font-size: 22px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TARJETA PRINCIPAL -->
+    <div class="tarjeta-contenedor">
+
+        <!-- ENCABEZADO -->
+        <div style="text-align:center; margin-bottom:12px;">
+            <p style="margin:0 0 4px 0; font-size:9px; letter-spacing:3.5px; text-transform:uppercase; color:#2d6a4f; font-weight:bold;">
+                Ficha de Personaje · Getting to Know</p>
+            <h1 class="titulo-personaje">Lomen</h1>
+            
+        </div>
+
+        <!-- ORNAMENTO VERDE SUPERIOR -->
+        <div style="display:flex; align-items:center; gap:8px; margin:0 0 16px 0;">
+            <div style="flex:1; height:1px; background:linear-gradient(to right, transparent, #2d6a4f);"></div>
+            <span style="color:#40916c; font-size:10px;">🌿</span>
+            <div style="flex:1; height:1px; background:linear-gradient(to left, transparent, #2d6a4f);"></div>
+        </div>
+
+        <!-- SECCIÓN 1: DATOS CLAVE -->
+        <div style="display:flex; align-items:center; gap:10px; margin:0 0 10px 0;">
+            <div style="flex:1; height:1px; background:linear-gradient(to right, transparent, rgba(45,106,79,0.3));"></div>
+            <span style="font-size:11px; font-style:italic; color:#1b4332; font-weight:bold;">✦ Datos clave ✦</span>
+            <div style="flex:1; height:1px; background:linear-gradient(to left, transparent, rgba(45,106,79,0.3));"></div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0;">
+            <div style="padding:6px 8px 6px 4px; border-bottom:1px solid rgba(45,106,79,0.2);">
+                <div style="font-size:8.5px; letter-spacing:1.5px; text-transform:uppercase; color:#2d6a4f; font-weight:bold; margin-bottom:2px;">Rol</div>
+                <div style="font-size:12.5px; color:#081c15;">Capitán de la guardia Häscht</div>
+            </div>
+
+            <div style="padding:6px 4px 6px 8px; border-bottom:1px solid rgba(45,106,79,0.2); border-left:1px solid rgba(45,106,79,0.18);">
+                <div style="font-size:8.5px; letter-spacing:1.5px; text-transform:uppercase; color:#2d6a4f; font-weight:bold; margin-bottom:2px;">Edad / Especie</div>
+                <div style="font-size:12.5px; color:#081c15;">24 - 26 años · Humano (Tribu Häscht)</div>
+            </div>
+
+            <div style="padding:6px 8px 6px 4px; border-bottom:1px solid rgba(45,106,79,0.2);">
+                <div style="font-size:8.5px; letter-spacing:1.5px; text-transform:uppercase; color:#2d6a4f; font-weight:bold; margin-bottom:2px;">Afiliación</div>
+                <div style="font-size:12.5px; color:#081c15;">Tribu Häscht</div>
+            </div>
+
+            <div style="padding:6px 4px 6px 8px; border-bottom:1px solid rgba(45,106,79,0.2); border-left:1px solid rgba(45,106,79,0.18);">
+                <div style="font-size:8.5px; letter-spacing:1.5px; text-transform:uppercase; color:#2d6a4f; font-weight:bold; margin-bottom:2px;">Época / Siglo</div>
+                <div style="font-size:12.5px; color:#081c15;">Era de las Tribus y Reinos</div>
+            </div>
+
+            <div style="grid-column:1 / -1; padding:6px 4px;">
+                <div style="font-size:8.5px; letter-spacing:1.5px; text-transform:uppercase; color:#2d6a4f; font-weight:bold; margin-bottom:2px;">Armamento y destreza</div>
+                <div style="font-size:12.5px; color:#081c15; font-style:italic;">Arco tribal, lanza y táctica de patrulla forestal</div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 2: PERSONALIDAD Y MOTIVACIÓN -->
+        <div style="display:flex; align-items:center; gap:10px; margin:14px 0 10px 0;">
+            <div style="flex:1; height:1px; background:linear-gradient(to right, transparent, rgba(45,106,79,0.3));"></div>
+            <span style="font-size:11px; font-style:italic; color:#1b4332; font-weight:bold;">✦ Personalidad y motivación ✦</span>
+            <div style="flex:1; height:1px; background:linear-gradient(to left, transparent, rgba(45,106,79,0.3));"></div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr; gap:0;">
+            <div style="padding:6px 4px; border-bottom:1px solid rgba(45,106,79,0.2);">
+                <div style="font-size:8.5px; letter-spacing:1.5px; text-transform:uppercase; color:#2d6a4f; font-weight:bold; margin-bottom:2px;">Personalidad</div>
+                <div style="font-size:12px; color:#081c15; font-style:italic; line-height:1.5;">Protector, desconfiado de extraños, sensato y fraternal.</div>
+            </div>
+
+            <div style="padding:6px 4px; border-bottom:1px solid rgba(45,106,79,0.2);">
+                <div style="font-size:8.5px; letter-spacing:1.5px; text-transform:uppercase; color:#2d6a4f; font-weight:bold; margin-bottom:2px;">Motivación principal</div>
+                <div style="font-size:12px; color:#081c15; font-style:italic;">Proteger la seguridad de la aldea y la vida de su hermana Ameřa.</div>
+            </div>
+
+            <div style="padding:6px 4px;">
+                <div style="font-size:8.5px; letter-spacing:1.5px; text-transform:uppercase; color:#2d6a4f; font-weight:bold; margin-bottom:2px;">Conflicto clave</div>
+                <div style="font-size:12px; color:#081c15; font-style:italic;">Aceptar a un ex-soldado de Gricái dentro de su comunidad.</div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 3: RELACIONES -->
+        <div style="display:flex; align-items:center; gap:10px; margin:14px 0 10px 0;">
+            <div style="flex:1; height:1px; background:linear-gradient(to right, transparent, rgba(45,106,79,0.3));"></div>
+            <span style="font-size:11px; font-style:italic; color:#1b4332; font-weight:bold;">✦ Relaciones ✦</span>
+            <div style="flex:1; height:1px; background:linear-gradient(to left, transparent, rgba(45,106,79,0.3));"></div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0;">
+            <div style="padding:6px 8px 6px 4px; border-bottom:1px solid rgba(45,106,79,0.2);">
+                <div style="font-size:8.5px; letter-spacing:1.5px; text-transform:uppercase; color:#2d6a4f; font-weight:bold; margin-bottom:2px;">Familia</div>
+                <div style="font-size:12px; color:#081c15; font-style:italic;">Derk (padre), Ameřa (hermana menor)</div>
+            </div>
+
+            <div style="padding:6px 4px 6px 8px; border-bottom:1px solid rgba(45,106,79,0.2); border-left:1px solid rgba(45,106,79,0.18);">
+                <div style="font-size:8.5px; letter-spacing:1.5px; text-transform:uppercase; color:#2d6a4f; font-weight:bold; margin-bottom:2px;">Aliados</div>
+                <div style="font-size:12px; color:#081c15; font-style:italic;">Ameřa, Derk, Heya</div>
+            </div>
+
+            <div style="padding:6px 8px 6px 4px;">
+                <div style="font-size:8.5px; letter-spacing:1.5px; text-transform:uppercase; color:#2d6a4f; font-weight:bold; margin-bottom:2px;">Pareja</div>
+                <div style="font-size:12px; color:#081c15; font-style:italic;">Ninguna declarada</div>
+            </div>
+
+            <div style="padding:6px 4px 6px 8px; border-left:1px solid rgba(45,106,79,0.18);">
+                <div style="font-size:8.5px; letter-spacing:1.5px; text-transform:uppercase; color:#2d6a4f; font-weight:bold; margin-bottom:2px;">Enemigos / Rivales</div>
+                <div style="font-size:12px; color:#081c15; font-style:italic;">Tribus enemigas del este</div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 4: TRASFONDO Y ARCO -->
+        <div style="display:flex; align-items:center; gap:10px; margin:14px 0 10px 0;">
+            <div style="flex:1; height:1px; background:linear-gradient(to right, transparent, rgba(45,106,79,0.3));"></div>
+            <span style="font-size:11px; font-style:italic; color:#1b4332; font-weight:bold;">✦ Trasfondo y arco ✦</span>
+            <div style="flex:1; height:1px; background:linear-gradient(to left, transparent, rgba(45,106,79,0.3));"></div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr; gap:0;">
+            <div style="padding:6px 4px; border-bottom:1px solid rgba(45,106,79,0.2);">
+                <div style="font-size:8.5px; letter-spacing:1.5px; text-transform:uppercase; color:#2d6a4f; font-weight:bold; margin-bottom:2px;">Origen</div>
+                <div style="font-size:12px; color:#081c15; font-style:italic; line-height:1.5;">Primogénito del líder Derk en la tribu Häscht.</div>
+            </div>
+
+            <div style="padding:6px 4px;">
+                <div style="font-size:8.5px; letter-spacing:1.5px; text-transform:uppercase; color:#2d6a4f; font-weight:bold; margin-bottom:2px;">Arco de personaje</div>
+                <div style="font-size:12px; color:#081c15; font-style:italic; line-height:1.5;">Pasa del recelo hacia el ex-guardia gricano a otorgarle su respeto tras comprobar su lealtad hacia Ameřa.</div>
+            </div>
+        </div>
+
+        <!-- ORNAMENTO INFERIOR -->
+        <div style="display:flex; align-items:center; gap:8px; margin:18px 0 10px 0;">
+            <div style="flex:1; height:1px; background:linear-gradient(to right, transparent, #2d6a4f);"></div>
+            <span style="color:#40916c; font-size:10px;">🍃</span>
+            <div style="flex:1; height:1px; background:linear-gradient(to left, transparent, #2d6a4f);"></div>
+        </div>
+
+        <!-- PIE -->
+        <div style="text-align:center;">
+            <p style="margin:0; font-size:9px; font-style:italic; color:#2d6a4f; opacity:0.85;">
+                Archivo personal · Fernando Barra · Getting to Know © 2025</p>
+        </div>
+
+    </div>
+</body>
+</html>
