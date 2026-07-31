@@ -1,5 +1,5 @@
 # Heya
-*"El Guarda" (Significa "Soldado")*
+*«El Guarda» (Significa «Soldado»)*
 
 ## 🍃 Datos clave
 * **Rol:** Ex-guardia de frontera / Agricultor

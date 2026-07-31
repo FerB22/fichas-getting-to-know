@@ -1,5 +1,5 @@
 # Ameřa
-*"Ameřa, hija de Derk"*
+*«Ameřa, hija de Derk»*
 
 ## 🍃 Datos clave
 * **Rol:** Cazadora tribal

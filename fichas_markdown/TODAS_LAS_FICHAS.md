@@ -1,7 +1,7 @@
 # Colección Oficial de Fichas de Personajes - Getting to Know
 
 # Heya
-*"El Guarda" (Significa "Soldado")*
+*«El Guarda» (Significa «Soldado»)*
 
 ## 🍃 Datos clave
 * **Rol:** Ex-guardia de frontera / Agricultor
@@ -34,7 +34,7 @@
 ==================================================
 
 # Ameřa
-*"Ameřa, hija de Derk"*
+*«Ameřa, hija de Derk»*
 
 ## 🍃 Datos clave
 * **Rol:** Cazadora tribal
@@ -67,7 +67,7 @@
 ==================================================
 
 # Hesis
-*"La hermanita"*
+*«La hermanita»*
 
 ## 🍃 Datos clave
 * **Rol:** Guía espiritual / Recuerdo viviente
@@ -131,7 +131,7 @@
 ==================================================
 
 # Derk
-*"Líder de los Häscht"*
+*«Líder de los Häscht»*
 
 ## 🍃 Datos clave
 * **Rol:** Patriarca / Líder tribal

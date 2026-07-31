@@ -1,5 +1,5 @@
 # Hesis
-*"La hermanita"*
+*«La hermanita»*
 
 ## 🍃 Datos clave
 * **Rol:** Guía espiritual / Recuerdo viviente

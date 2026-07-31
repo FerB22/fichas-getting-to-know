@@ -1,5 +1,5 @@
 # Derk
-*"Líder de los Häscht"*
+*«Líder de los Häscht»*
 
 ## 🍃 Datos clave
 * **Rol:** Patriarca / Líder tribal
