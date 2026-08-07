@@ -145,9 +145,18 @@
             animation: fadeIn 0.4s ease-out forwards;
         }
 
+        #seccion-fichas.closing {
+            animation: fadeOut 0.35s ease-in forwards;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(20px); }
         }
 
         .fichas-contenedor {
@@ -342,6 +351,7 @@
     <script>
         function mostrarFichas() {
             const seccion = document.getElementById('seccion-fichas');
+            seccion.classList.remove('closing');
             seccion.classList.add('active');
             window.location.hash = 'fichas';
             seccion.scrollIntoView({ behavior: 'smooth' });
@@ -349,9 +359,16 @@
 
         function ocultarFichas() {
             const seccion = document.getElementById('seccion-fichas');
-            seccion.classList.remove('active');
-            window.location.hash = '';
+            seccion.classList.add('closing');
+            
+            // Scroll suave de regreso al menú principal mientras se desvanece
             document.getElementById('main-hub').scrollIntoView({ behavior: 'smooth' });
+            
+            // Esperar a que finalice la animación de salida (350ms) para limpiar clases y hash
+            setTimeout(() => {
+                seccion.classList.remove('active', 'closing');
+                window.location.hash = '';
+            }, 350);
         }
 
         // Detectar si el usuario abre directamente con el hash #fichas

@@ -1,22 +1,17 @@
-# 🚀 Guía Práctica: Animación de Despliegue y Desplazamiento Suave (Smooth Scroll)
+# 🚀 Guía Práctica: Animación de Entrada y Salida con Desplazamiento Suave (Smooth Scroll)
 
-Esta guía explica paso a paso cómo implementar la animación de apertura suave y desplazamiento que se activa al presionar el botón **"Fichas de Personajes"**, para que puedas replicarla fácilmente en cualquier otro proyecto web (HTML, CSS y JavaScript).
-
----
-
-## 🛠️ ¿Cómo Funciona la Solución? (Conceptos Clave)
-
-La técnica combina 3 capas del desarrollo web:
-
-1. **HTML**: Un botón disparador (`<button>`) y una sección contenedora oculta (`<section>`).
-2. **CSS**: Una animación `@keyframes fadeIn` que combina **opacidad (fade)** y **desplazamiento vertical (slide up)**, además de `scroll-behavior: smooth` para que el navegador navegue suavemente.
-3. **JavaScript**: Manipulación de clases CSS (`classList.add('active')`), gestión del historial de la URL (`window.location.hash`) y auto-desplazamiento (`scrollIntoView`).
+Esta guía explica paso a paso cómo implementar las animaciones de **apertura (fadeIn)** y **cierre (fadeOut)** con desplazamiento suave, aplicadas en el botón **"Fichas de Personajes"** y **"Volver al Menú Principal"**, para que puedas replicarlas en cualquier proyecto web.
 
 ---
 
-## 💻 Código Completo de Ejemplo
+## 🛠️ Conceptos Clave
 
-Puedes copiar y pegar este plantilla ejecutable en un archivo `index.html` para probarlo:
+1. **Entrada (Aparición + Deslizamiento Hacia Arriba)**: Al hacer clic en abrir, la sección pasa a `display: block` y ejecuta `@keyframes fadeIn` (`opacity: 0 -> 1`, `translateY: 20px -> 0`).
+2. **Salida (Desvanecimiento + Deslizamiento Hacia Abajo)**: Al presionar "Volver al Menú", se añade la clase `.closing` (`@keyframes fadeOut`), se desplaza suavemente la pantalla hacia el menú principal y tras finalizar la animación (350ms con `setTimeout`), la sección vuelve a `display: none`.
+
+---
+
+## 💻 Plantilla de Código Completa
 
 ```html
 <!DOCTYPE html>
@@ -24,9 +19,9 @@ Puedes copiar y pegar este plantilla ejecutable en un archivo `index.html` para 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejemplo de Animación de Despliegue</title>
+    <title>Ejemplo de Animación Entrada y Salida</title>
     <style>
-        /* 1. Habilitar desplazamiento suave en toda la página */
+        /* 1. Habilitar desplazamiento suave */
         html {
             scroll-behavior: smooth;
         }
@@ -38,7 +33,6 @@ Puedes copiar y pegar este plantilla ejecutable en un archivo `index.html` para 
             color: #1b4332;
         }
 
-        /* Pantalla inicial / Menú principal */
         .seccion-principal {
             min-height: 100vh;
             display: flex;
@@ -65,39 +59,55 @@ Puedes copiar y pegar este plantilla ejecutable en un archivo `index.html` para 
             transform: translateY(-2px);
         }
 
-        /* 2. Sección Oculta por defecto */
+        /* 2. Sección oculta por defecto */
         .seccion-oculta {
-            display: none; /* Inicia oculta */
+            display: none;
             max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px;
         }
 
-        /* 3. Clase que activa la visibilidad y la animación */
+        /* 3. Animación de ENTRADA */
         .seccion-oculta.active {
-            display: block; /* Se hace visible */
-            animation: deslizarYAparecer 0.4s ease-out forwards;
+            display: block;
+            animation: fadeIn 0.4s ease-out forwards;
         }
 
-        /* 4. Definición de la Animación en CSS (Keyframes) */
-        @keyframes deslizarYAparecer {
+        /* 4. Animación de SALIDA */
+        .seccion-oculta.closing {
+            animation: fadeOut 0.35s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px); /* Empieza 20px más abajo */
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);    /* Llega a su posición final */
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(20px);
             }
         }
 
         .btn-cerrar {
             margin-bottom: 20px;
-            padding: 8px 16px;
+            padding: 8px 18px;
             background-color: #e8f5e9;
             border: 1px solid #2d6a4f;
             border-radius: 20px;
             cursor: pointer;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -107,50 +117,54 @@ Puedes copiar y pegar este plantilla ejecutable en un archivo `index.html` para 
     <main class="seccion-principal" id="menu-principal">
         <h1>Mi Proyecto Web</h1>
         <button class="btn-abrir" onclick="mostrarSeccion()">
-            🛡️ Ver Fichas de Personajes
+            🛡️ Fichas de Personajes
         </button>
     </main>
 
-    <!-- SECCIÓN REVELADA CON ANIMACIÓN -->
+    <!-- SECCIÓN REVELADA CON ANIMACIONES DE ENTRADA Y SALIDA -->
     <section class="seccion-oculta" id="seccion-contenido">
         <button class="btn-cerrar" onclick="ocultarSeccion()">
-            ← Volver al Menú
+            ← Volver al Menú Principal
         </button>
-        <h2>Contenido Revelado</h2>
-        <p>¡Aquí va el contenido que aparece con animación suave!</p>
+        <h2>Fichas de Personajes</h2>
+        <p>Contenido detallado de las fichas...</p>
     </section>
 
-    <!-- 5. LÓGICA DE JAVASCRIPT -->
+    <!-- LÓGICA JAVASCRIPT -->
     <script>
-        // Función para mostrar la sección con animación y desplazarse hacia ella
         function mostrarSeccion() {
             const seccion = document.getElementById('seccion-contenido');
             
-            // A. Agregar la clase CSS que activa la animación
+            // Remover animación de cierre previa si existía
+            seccion.classList.remove('closing');
+            
+            // Activar visibilidad y animación de entrada (fadeIn)
             seccion.classList.add('active');
             
-            // B. Actualizar el hash de la URL (#fichas) sin recargar la página
+            // Actualizar URL
             window.location.hash = 'fichas';
             
-            // C. Desplazar la pantalla de forma fluida hacia la sección
+            // Desplazar suavemente a la sección
             seccion.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Función para ocultar la sección y regresar al menú
         function ocultarSeccion() {
             const seccion = document.getElementById('seccion-contenido');
             
-            // A. Remover la clase active
-            seccion.classList.remove('active');
+            // Activar la animación de salida (fadeOut)
+            seccion.classList.add('closing');
             
-            // B. Limpiar el hash de la URL
-            window.location.hash = '';
-            
-            // C. Volver al menú principal arriba
+            // Iniciar desplazamiento suave de regreso al menú arriba
             document.getElementById('menu-principal').scrollIntoView({ behavior: 'smooth' });
+            
+            // Esperar los 350ms que dura fadeOut antes de remover las clases y ocultar
+            setTimeout(() => {
+                seccion.classList.remove('active', 'closing');
+                window.location.hash = '';
+            }, 350);
         }
 
-        // Bonus: Si el usuario entra directamente con la URL tudominio.com/#fichas
+        // Auto-abrir si la URL contiene #fichas
         window.addEventListener('DOMContentLoaded', () => {
             if (window.location.hash === '#fichas') {
                 mostrarSeccion();
@@ -163,36 +177,12 @@ Puedes copiar y pegar este plantilla ejecutable en un archivo `index.html` para 
 
 ---
 
-## 🔍 Explicación Detallada Parte por Parte
+## 🔍 ¿Por Qué Se Usa `setTimeout` al Volver al Menú?
 
-### 1. La Animación CSS (`@keyframes`)
-```css
-@keyframes deslizarYAparecer {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-```
-- **`opacity: 0` a `1`**: Hace que los elementos pasen de invisibles a totalmente visibles (efecto *Fade In*).
-- **`transform: translateY(20px)` a `(0)`**: El contenido comienza ligeramente desplazado hacia abajo y sube suavemente a su posición original.
-- **`ease-out`**: La animación empieza rápido y desacelera al final para sentirse natural.
-- **`forwards`**: Mantiene el estado final (`opacity: 1`) una vez que termina la animación.
+Si se remueve `display: block` inmediatamente al hacer clic en "Volver", el navegador ocultaría la sección en 0 milisegundos y **la animación de salida nunca se vería**.
 
----
-
-### 2. El Enfoque Híbrido: `display: none` + `scrollIntoView`
-Si un elemento tiene `display: none`, el navegador no calcula su altura ni posición. Por eso:
-1. Primero se añade la clase `.active` en JS (`display: block`).
-2. Al hacerse visible, la animación CSS se dispara automáticamente.
-3. Inmediatamente llamamos a `seccion.scrollIntoView({ behavior: 'smooth' })`, que le ordena al navegador deslizar la vista hacia ese elemento recién dibujado.
-
----
-
-### 3. Persistencia de URL con `window.location.hash`
-- Al presionar el botón se añade `#fichas` a la barra de direcciones (`tudominio.com/#fichas`).
-- Con el evento `DOMContentLoaded`, si un usuario comparte la URL directa `#fichas` o recarga la página, JavaScript detecta el hash y abre automáticamente la sección animada.
+Al usar `setTimeout(..., 350)`:
+1. JavaScript le añade la clase `.closing` a la sección.
+2. CSS ejecuta `@keyframes fadeOut` durante 0.35s (350 milisegundos).
+3. Mientras se desvanece, la pantalla se desplaza suavemente hacia arriba (`scrollIntoView`).
+4. Tras transcurrir los 350ms, JavaScript limpia las clases y oculta completamente el contenedor.
