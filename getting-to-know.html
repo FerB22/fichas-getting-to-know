@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting to Know - Historia Completa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f7faf7;
+            --bg-card: #ffffff;
+            --bg-nav: rgba(255, 255, 255, 0.92);
+            --text-main: #132a1e;
+            --text-secondary: #2d5a43;
+            --text-muted: #5c836e;
+            --green-primary: #2d6a4f;
+            --green-dark: #1b4332;
+            --green-light: #d8f3dc;
+            --green-subtle: #e8f5e9;
+            --green-accent: #52b788;
+            --border-color: #d1e7dd;
+            --shadow-subtle: 0 4px 20px rgba(27, 67, 50, 0.06);
+            --shadow-card: 0 10px 35px rgba(27, 67, 50, 0.1);
+            --font-reader: 'Lora', Georgia, serif;
+            --font-size-base: 19px;
+            --line-height-base: 1.85;
+        }
+
+        /* Tema Pergamino / Cálido */
+        body.theme-sepia {
+            --bg-body: #f4f1ea;
+            --bg-card: #faf7f2;
+            --bg-nav: rgba(250, 247, 242, 0.92);
+            --text-main: #24211d;
+            --text-secondary: #2d5a43;
+            --border-color: #e2dacd;
+        }
+
+        /* Tema Nocturno Verde */
+        body.theme-dark {
+            --bg-body: #081c15;
+            --bg-card: #1b4332;
+            --bg-nav: rgba(27, 67, 50, 0.92);
+            --text-main: #f4f9f4;
+            --text-secondary: #b7e4c7;
+            --text-muted: #74c69d;
+            --green-primary: #52b788;
+            --green-dark: #74c69d;
+            --green-light: #2d6a4f;
+            --green-subtle: rgba(82, 183, 136, 0.15);
+            --border-color: #2d6a4f;
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --shadow-card: 0 10px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-reader);
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-base);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+        }
+
+        /* Barra de progreso de lectura */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #52b788, #2d6a4f, #1b4332);
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s ease-out;
+        }
+
+        /* Barra Superior de Navegación */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            background: var(--bg-nav);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-subtle);
+            padding: 12px 20px;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--green-primary);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            padding: 6px 14px;
+            border-radius: 6px;
+            background-color: var(--green-subtle);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .btn-back:hover {
+            background-color: var(--green-primary);
+            color: #ffffff;
+            transform: translateX(-2px);
+        }
+
+        .controls-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .ctrl-btn {
+            background-color: var(--bg-card);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .ctrl-btn:hover {
+            border-color: var(--green-primary);
+            color: var(--green-primary);
+        }
+
+        .ctrl-btn.active {
+            background-color: var(--green-primary);
+            color: #ffffff;
+            border-color: var(--green-primary);
+        }
+
+        /* Contenedor Principal */
+        .page-container {
+            max-width: 820px;
+            margin: 30px auto 60px auto;
+            padding: 0 20px;
+        }
+
+        .story-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: var(--shadow-card);
+            padding: 50px 48px;
+            position: relative;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        @media (max-width: 600px) {
+            .story-card {
+                padding: 30px 20px;
+                border-radius: 8px;
+            }
+        }
+
+        /* Encabezado del Libro */
+        .story-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--green-light);
+            position: relative;
+        }
+
+        .story-tagline {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--green-primary);
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .story-title {
+            font-family: 'Cinzel', serif;
+            font-size: 38px;
+            color: var(--green-dark);
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .story-author {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .leaf-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 20px 0;
+            color: var(--green-accent);
+        }
+
+        .leaf-divider::before,
+        .leaf-divider::after {
+            content: '';
+            height: 1px;
+            width: 80px;
+            background: linear-gradient(to right, transparent, var(--green-accent));
+        }
+
+        .leaf-divider::after {
+            background: linear-gradient(to left, transparent, var(--green-accent));
+        }
+
+        /* Bloque Copyright Acordeón */
+        .copyright-details {
+            background-color: var(--green-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 25px auto 0 auto;
+            max-width: 650px;
+            text-align: left;
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .copyright-details summary {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--green-primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            user-select: none;
+        }
+
+        .copyright-content {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-color);
+            font-style: italic;
+        }
+
+        /* Cuerpo del Texto */
+        .story-body {
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+        }
+
+        .story-body p {
+            margin-bottom: 1.6em;
+            text-indent: 1.5em;
+        }
+
+        /* Primer párrafo sin sangría + capitular */
+        .story-body p.first-paragraph {
+            text-indent: 0;
+        }
+
+        .story-body p.first-paragraph::first-letter {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5em;
+            float: left;
+            line-height: 0.8;
+            margin-right: 0.15em;
+            margin-top: 0.05em;
+            color: var(--green-primary);
+            font-weight: 700;
+        }
+
+        /* Separadores de sección en la historia */
+        .section-break {
+            text-align: center;
+            margin: 2.5em 0;
+            color: var(--green-primary);
+            font-size: 18px;
+            letter-spacing: 8px;
+            user-select: none;
+        }
+
+        /* Diálogos destacados suavemente */
+        .dialogue {
+            color: var(--text-main);
+        }
+
+        /* Botón Ir arriba */
+        .btn-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--green-primary);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 800;
+        }
+
+        .btn-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .btn-top:hover {
+            background-color: var(--green-dark);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Barra de progreso -->
+    <div id="progress-bar"></div>
+
+    <!-- Navegación Superior -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="index.html" class="btn-back">
+                <span>←</span> Galería de Personajes
+            </a>
+
+            <div class="controls-group">
+                <!-- Ajuste de fuente -->
+                <button class="ctrl-btn" onclick="adjustFontSize(-1)" title="Disminuir letra">A-</button>
+                <button class="ctrl-btn" onclick="adjustFontSize(1)" title="Aumentar letra">A+</button>
+                
+                <!-- Fuentes -->
+                <button class="ctrl-btn" id="btn-font" onclick="toggleFont()" title="Cambiar tipografía">Serif</button>
+
+                <!-- Temas -->
+                <button class="ctrl-btn active" id="theme-white" onclick="setTheme('white')">🍃 Blanco</button>
+                <button class="ctrl-btn" id="theme-sepia" onclick="setTheme('sepia')">📜 Cálido</button>
+                <button class="ctrl-btn" id="theme-dark" onclick="setTheme('dark')">🌲 Noche</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenedor Principal -->
+    <div class="page-container">
+        <article class="story-card">
+
+            <!-- ENCABEZADO -->
+            <header class="story-header">
+                <span class="story-tagline">Relato Corto · Universo de Fantasía</span>
+                <h1 class="story-title">Getting to Know</h1>
+                <p class="story-author">Por Fernando Barra</p>
+
+                <div class="leaf-divider">
+                    <span>🍃</span> ✦ <span>🌿</span>
+                </div>
+
+                <!-- Copyright Acordeón -->
+                <details class="copyright-details">
+                    <summary>
+                        <span>© 2025 Fernando Barra — Todos los derechos reservados</span>
+                        <span>▼</span>
+                    </summary>
+                    <div class="copyright-content">
+                        <p>Ninguna parte de esta obra podrá ser reproducida, almacenada o transmitida en forma alguna ni por ningún medio, ya sea electrónico, mecánico, fotocopia, grabación u otros, sin el permiso previo y por escrito del autor.</p>
+                        <p style="margin-top: 6px;"><strong>Contacto:</strong> fernandobarra052@gmail.com</p>
+                    </div>
+                </details>
+            </header>
+
+            <!-- CUERPO DE LA HISTORIA -->
+            <main class="story-body" id="story-body">
+                <p class="first-paragraph">Tras días sin recibir su cambio de turno, el guarda de la torre en medio del bosque bajó con su morral, decidido a regresar a su centro de mando en las llanuras.</p>
+
+                <p>El hambre lo apremiaba, y cada escalón intensificaba esa molestia que le recordaba las agrias frutas de una planta desconocida que solo lograron calmar un poco su estómago vacío. Aunque silbaba y tarareaba, su aburrimiento era tan evidente como el crujir de las hojas bajo sus pies, señal de un otoño que se avecinaba inexorable.</p>
+
+                <p>Caminaba sin rumbo, su mente atrapada en recuerdos que se entremezclaban con la realidad: los días de borrachera con sus viejos camaradas, llenos de risas y descontrol, y aquella tarde de batalla en las llanuras donde peleó contra soldados tribales. La herida larga que recibió en la pierna no solo le dejó cicatrices visibles, sino también una tristeza profunda por haber perdido el ascenso que tanto anhelaba.</p>
+
+                <p>La noche llegó con una tormenta violenta. Solo tenía su morral para cubrirse, y la lluvia que se colaba entre las telas hacía crecer su ira y su tiritera. El frío y la soledad se hundían en sus huesos, imposibilitándole conciliar el sueño.</p>
+
+                <p>Cuando despertó, veía cómo las hojas otoñales lo cubrían desde el pecho hacia abajo, algo que le pareció extraño y fuera de lugar, un detalle que el bosque, indiferente, parecía susurrarle sin respuestas. Poco a poco, su ira fue cediendo ante el cielo azul y el sol esplendoroso que comenzaba a llenar el mundo de luz y esperanza.</p>
+
+                <p>Se dirigió a un riachuelo cercano, donde se refrescó el rostro y llenó su cantimplora. Se levantó y empezó su marcha hacia su centro de mando; pero él no sabía que su reino fue derrocado y, con ello, las probabilidades de que encontrara a un compañero de guerra.</p>
+
+                <p>Caminaba pensando en su pasado, días de gloria y de dolor; cuando era un simple sembrador en las tierras de su familia. Él solo quería sembrar y segar, vivir una vida de sembrador y continuar con el legado familiar.</p>
+
+                <p>Sus planes fueron calcinados cuando llegaron las tropas y se lo llevaron por la fuerza a pelear una guerra en las lejanías en un lugar extraño.</p>
+
+                <p>Mientras subía montes y recordaba el camino de regreso, su mente no dejaba de divagar en sus más tristes recuerdos: los días del duro entrenamiento bajo la lluvia, la soledad en un lugar donde no había descanso, las heridas en su cuerpo.</p>
+
+                <p>Uno de esos recuerdos permaneció más en su mente: el día en que llegó al centro de mando. Llovía a cántaros y el barro entraba en la boca. Los llevaban como esclavos, quitándoles la ropa y los vestían con harapos.</p>
+
+                <p>El rey de Gricai, hombre soberbio, ordenaba y no daba rédito a sus soldados. Gastaba más en licores y joyas que en la ropa de sus hombres.</p>
+
+                <p>El guarda llegó a la zona de riscos, donde las aguas subterráneas han esculpido altos acantilados. El suelo allí es duro y áspero.</p>
+
+                <p>Caminó con cuidado en estrecho risco, asegurándose de no resbalar. Pero desde un risco alto a su costado izquierdo viajó una daga, que impactó junto a sus pies.</p>
+
+                <p>Él desenvainó su espada y una silueta encapuchada se lanzó sobre él desde el borde. Ambos chocan espada y daga, empujándose cada uno a un lado del risco.</p>
+
+                <p>Con dolor en la espalda y sorprendido, el guarda se levantó empuñando su espada. Pero no le dio tiempo de reaccionar al ataque de la chica, quien le había rozado la daga en el costado izquierdo del abdomen.</p>
+
+                <p>En medio del choque, él la sujetó con fuerza mientras caía del risco. Ambos se despeñaban sin poder evitarlo. El guarda sentía alivio, hace tiempo deseaba morir y dejar los tormentos de su pasado.</p>
+
+                <p>Mientras aún descendía en el aire, recordó a su hermana menor con quien jugaba en los sembradíos. Él deseaba que hubiera un más allá para volver a verla y poder jugar otra vez.</p>
+
+                <p>El golpe fue estruendoso, como un disparo de mortero. Ambos inconscientes y la sangre salía de su costado.</p>
+
+                <p>En la inconsciencia, viajó a un sembradío de trigo, no creía lo que veía: un árbol y, a su lado, su hermanita. Ella corrió como siempre lo hacía cuando lo veía llegar.</p>
+
+                <p>Ella lo abrazó y, en los ojos de él, la duda de que ella fuera su hermana.</p>
+
+                <p><span class="dialogue">—Hesis, ¿qué-qué haces aquí?</span> —reaccionó, incrédulo.</p>
+
+                <p>Ella lo miró a los ojos con una sonrisa calmante.</p>
+
+                <p><span class="dialogue">—Sé que deseas morir, pero debes regresar a salvarla.</span></p>
+
+                <p><span class="dialogue">—¿A quién?</span> —cuestionó.</p>
+
+                <p>Así, el guarda recobró la consciencia y sintió el debilitamiento de su cuerpo. Miró a su lado y encontró a una chica inconsciente.</p>
+
+                <p>Luchó con su cuerpo para revisar si respiraba. Su respiración era fatigosa y cortante. Entonces dejó de respirar. Le dio respiración boca a boca. Las palabras de su hermana lo motivaban para continuar a pesar del dolor de su costado que sangraba. Tras segundos agotadores de reanimación, la chica recuperó el aliento entre jadeos, sus ojos buscaban entender su entorno. Intentó levantarse, pero se desplomó hacia un lado, incapaz de sostenerse por completo. La magnitud de sus heridas la vencieron con rapidez, sumiéndola en un sueño profundo.</p>
+
+                <p>El guarda observó el cielo mientras su siniestra más se debilitaba debido al corte de su abdomen.</p>
+
+                <p>En su momento de paz, él cerró los ojos con desesperanza. Entonces fue llevado otra vez con su hermana, pero en un paraje diferente: la cima de un monte en que se podía observar la vastedad del bosque.</p>
+
+                <p><span class="dialogue">—¿Por qué deseas morir?</span> —cuestionó su hermana a su lado.</p>
+
+                <p><span class="dialogue">—Te extraño. Extraño vivir con nuestros padres y disfrutar cada mañana.</span></p>
+
+                <p><span class="dialogue">—Eso es egoísta. Ella necesita tu ayuda ahora</span> —declaró con firmeza.</p>
+
+                <p><span class="dialogue">—Pero ella quiso matarme. ¿Por qué debería salvarla?</span> —el guarda.</p>
+
+                <p>Su hermana se giró hacia el paisaje, pensativa.</p>
+
+                <p><span class="dialogue">—Y tú lo evitaste. Tus justificaciones no son suficientes, Heya</span> —lo mira—. <span class="dialogue">Ella será tu motivo para vivir; vive por mí, por nuestros padres… y por ella.</span></p>
+
+                <p>Su hermana se desvaneció como el humo y él intentó que no se fuera, pero sus manos solo tocaron el aire.</p>
+
+                <p>Otra vez él volvió en sí, sacó hilo y aguja de su morral y cosió su herida en medio del dolor, el choque y los mareos.</p>
+
+                <p>Próximo a oscurecer, la chica despertó, sintiendo un dolor fuerte en la zona de las costillas. Ella se levantó con ayuda de sus manos, sintió mareos y aturdimiento.</p>
+
+                <p>Miró alrededor, viendo una pequeña fogata. Escuchó el crujir de las ramas en el bosque y tuvo miedo.</p>
+
+                <p>De la maleza apareció el guarda, trayendo ramas y frutas, y se percató de que la chica se había ido. Observó hacia todos lados con preocupación, pero no escuchó nada más que los sonidos de los pájaros y el mecimiento de las hojas.</p>
+
+                <p>Regresó hacia su fogata y puso las ramas con lentitud debido al dolor. Él pensaba en qué haría la chica malherida en el bosque sin comida ni ropa abrigada.</p>
+
+                <p>Mientras ponía las ramas en la fogata, la chica lo sorprendió, poniéndole la daga en su cuello.</p>
+
+                <p><span class="dialogue">—Oye, piénsalo antes</span> —afirmó, aquietándose—. <span class="dialogue">Estás herida, sin mí morirás.</span></p>
+
+                <p>Ella agitó la daga con nerviosismo y cayó de rodillas, vomitando sangre al costado. El guarda la ayudó a sentarse, proveyéndole un pañuelo.</p>
+
+                <p>La chica lo miró con extrañeza y desconcierto. Le extrañaba que un gricano se preocupara por alguien de una tribu enemiga.</p>
+
+                <p><span class="dialogue">—La temperatura empezará a bajar</span> —mencionó mientras le traía bayas—. <span class="dialogue">Y tu cuerpo ha gastado mucha energía.</span></p>
+
+                <p>Ella tomó las bayas con sorpresa.</p>
+
+                <p><span class="dialogue">—¿Cómo sabes que estas bayas son comestibles?</span> —cuestionó la chica.</p>
+
+                <p>El guarda se sentó frente a la fogata para calentar sus manos.</p>
+
+                <p><span class="dialogue">—Soy el guarda de la frontera del bosque para el reino Gricai. He estado aquí durante dos años.</span></p>
+
+                <p>La chica lo entendió: él no sabía que el reino Gricai había sido derrocado.</p>
+
+                <p><span class="dialogue">—¿Y adónde te diriges?</span> —le preguntó la chica para desviar el tema.</p>
+
+                <p><span class="dialogue">—Al centro de mando, mi relevo no llegó, así que iré al norte para averiguar qué sucedió.</span></p>
+
+                <p><span class="dialogue">—Oye, tengo que contarte la verdad sobre tu reino</span> —murmuró con nerviosismo. Él la miró extrañado—. <span class="dialogue">Revenst atacó la capital y derrocó al rey hace un par de semanas.</span> —El guarda no le creía, pero conforme hablaba, entendió que no mentía.</p>
+
+                <p>Acostado con sus brazos entrelazados y con su cabeza apoyada en su ropa, él procesaba lo que ella le había dicho. No era enojo ni tristeza, era alivio mezclado con incredulidad.</p>
+
+                <p>Durante un tiempo deseó que Gricai cayera, pero él creía que eso no sucedería. Se resignó a seguir órdenes de ruines generales y a vivir con la cabeza gacha.</p>
+
+                <p>Mientras intentaba conciliar el sueño, sentía un vacío, la pérdida del sendero que no había decidido, pero que formó parte de sí mismo durante muchos años.</p>
+
+                <p>Despertó con alivio. La luz del sol lo iluminaba con esperanza y el canto de los pájaros le recordaba que ya no había temor del porvenir ni del mal de su reino.</p>
+
+                <p>Se puso en pie mientras el dolor de su abdomen lo retorcía. Miró alrededor en busca de la chica, pero no la halló. Temprano llegó la chica con un conejote en su mano.</p>
+
+                <p>Él la observaba con asombro porque ella se acercaba sin molestia al llevar un animal grande en su mano.</p>
+
+                <p>Sin darle importancia, la chica dejó el animal enganchado en una rama.</p>
+
+                <p><span class="dialogue">—¿Qué sucede?</span> —cuestionó la chica con incomodidad mientras sacaba su daga de su vestidura.</p>
+
+                <p><span class="dialogue">—¿Cómo-cómo es que estás tan bien?</span></p>
+
+                <p>Ella tomó el animal, se sentó y empezó a palparle las patas traseras, buscando con los pulgares el punto blando donde la piel se despega de la carne, justo encima del corvejón.</p>
+
+                <p>La chica continuó en lo suyo sin sorprenderle el asombro del guarda. Él la miraba de manera atónita.</p>
+
+                <p><span class="dialogue">—Oye, ¿no vas a decirme? ¡Yo aún no me recupero y tú ya cazaste un animal!</span> —vociferó el guarda frente a ella.</p>
+
+                <p><span class="dialogue">—Soy häscht, me curo rápido. ¿¡Acaso no sabes eso de mi tribu!?</span></p>
+
+                <p><span class="dialogue">—¡Vaya! Nunca me dijeron que los häscht tenían esa capacidad</span> —declara, maravillado.</p>
+
+                <p>El guarda alzó la cabeza: los árboles frondosos meciéndose con brusquedad. Tranquilidad se deslizó por todo su cuerpo. Al fin sentía que nada lo ataba, pero también el vacío de que nada lo direccionara.</p>
+
+                <p>Bajó la mirada, entendió lo que tenía enfrente y a lo que se refería su hermana. Entendió que su camino es con la chica, que debía quedarse junto a ella.</p>
+
+                <p>Al instante, una ventisca proveniente de los árboles lo sacudió. Eso lo sorprendió al igual que a la chica.</p>
+
+                <p><span class="dialogue">—Guau. ¿Crees en los espíritus?</span> —preguntó mientras despellejaba el conejote.</p>
+
+                <p><span class="dialogue">—Creo…</span> —pensativo— <span class="dialogue">que sí.</span></p>
+
+                <p>La chica dejó la piel curtida a un costado, abrió el estómago y tiró las entrañas a la tierra.</p>
+
+                <p><span class="dialogue">—¿Por qué no te fuiste si ya te habías recuperado?</span></p>
+
+                <p>Ella colgó el conejote sobre la fogata sin prestarle mucha atención.</p>
+
+                <p><span class="dialogue">—Mi tribu tiene un credo: «salva a quien salva, protege a quien protege». Aunque eres mi enemigo, me salvaste a pesar de que intenté matarte.</span></p>
+
+                <p>El guarda miró al cielo recordando a su hermana. Esos tiempos bellos y disfrutones.</p>
+
+                <p><span class="dialogue">—Oye, ahora no tengo adónde ir ni reino ni familia</span> —le declaró mirándola—. <span class="dialogue">Creo que debo seguirte y buscar mi camino.</span></p>
+
+                <p>La chica se detuvo y dejó la piel del animal en sus piernas. Ella dudó unos segundos, pero decidió ser honesta.</p>
+
+                <p><span class="dialogue">—Mi tribu no confía fácilmente en los gricanos</span> —admitió, mirando las llamas—. <span class="dialogue">Pero tú... tú eres diferente. Si vienes conmigo, tendrás que demostrar tu lealtad cada día. ¿Estás dispuesto a eso?</span></p>
+
+                <p><span class="dialogue">—No tengo nada más…</span> —murmuró con lamento—. <span class="dialogue">Pero contigo creo haber encontrado esperanza</span> —levantó una sonrisa.</p>
+
+                <div class="section-break">🌿 ✦ 🌿</div>
+
+                <p>A la mañana siguiente empezaron el recorrido hacia la tribu. Caminaron por los frondosos bosques llenos de fauna. El canto de los pájaros los acompañaba en cada paso. Las vastas vistas del bajo bosque impresionaron al guarda.</p>
+
+                <p>En un punto del viaje, llegaron a la cima de un monte, donde la extensión de la espesura de los árboles no permitía observar nada debajo.</p>
+
+                <p>El guarda llegó y observó, súbito entendió que ese era el lugar donde había tenido la visión de su hermana. Una lágrima descendió lento por su mejilla como el deseo de encontrar a quien tanto amas y que termina en desilusión.</p>
+
+                <p><span class="dialogue">—¿Ocurre algo?</span> —preguntó la chica, sorprendida.</p>
+
+                <p><span class="dialogue">—No, es solo que desde este lugar… todo se siente pequeño.</span></p>
+
+                <p>La chica lo miró con extrañeza, pero también con una satisfacción genuina al ver que él no se contenía al mostrar sus emociones; le agradaba esa honestidad, pues rompía las barreras que solían separar a su gente de los demás.</p>
+
+                <p><span class="dialogue">—Es hermoso este lugar</span> —se coloca junto a él—. <span class="dialogue">Tantos años he recorrido este bosque y a veces olvido lo hermoso y único que es</span> —declara, inspirada.</p>
+
+                <p>El guarda carraspeó recobrando la compostura.</p>
+
+                <p><span class="dialogue">—¿Dónde está tu tribu?</span> —mencionó mientras se secaba las lágrimas.</p>
+
+                <p><span class="dialogue">—Hacia el suroeste</span> —indicó con su mano hacia el lugar aproximado.</p>
+
+                <p>El guarda se giró hacia la bajada del monte y la chica lo siguió por la pendiente con una sonrisa en el rostro.</p>
+
+                <p><span class="dialogue">—Deberías hablarme más de ti. Se ve que no has tenido una vida fácil.</span></p>
+
+                <p><span class="dialogue">—¿Has matado?</span> —cuestionó el guarda de súbito.</p>
+
+                <p>El rostro de la chica se enserió como quien recuerda algo espantoso.</p>
+
+                <p><span class="dialogue">—Sí… No tuve otra opción. Era él o yo</span> —murmura con lamento.</p>
+
+                <p>El guarda la mira, entendiendo el sentimiento.</p>
+
+                <p><span class="dialogue">—Yo no he matado. Mis compañeros querían obligarme a matar a un niño. Ellos carcajeaban alrededor como si no importara. Yo no lo hice porque creía que los principios son inquebrantables. Y gracias a eso, terminé de guarda.</span></p>
+
+                <p>Mientras caminaban entre los árboles, la chica miraba el suelo recordando el momento que tanto la ha marcado.</p>
+
+                <p><span class="dialogue">—La muerte es conocida en el último tiempo. Todos matan y todos limpian la espada para seguir matando.</span> —El guarda la mira fijamente—. <span class="dialogue">Matar para sobrevivir es justificable, pero matar sin esa causal es perverso.</span></p>
+
+                <p>El bosque en época otoñal, las hojas en el suelo por montones. Época de cambio y crecimiento.</p>
+
+                <p><span class="dialogue">—¿Crees que hay cosas que no se deben hacer a pesar de que la vida esté en riesgo?</span> —cuestiona la chica.</p>
+
+                <p>El guarda alza la vista hacia los árboles que cubren el cielo con sus hojas.</p>
+
+                <p><span class="dialogue">—Los principios, por ejemplo. «Son el pilar de toda persona que se considera a sí mismo como alguien de valor», dijo mi padre una vez; y nunca lo olvidé</span> —recalcó con la voz temblorosa.</p>
+
+                <p>La chica se detuvo, entendiendo los pesares que el guarda ha vivido. El guarda se percató de que las hojas ya no sonaban y se giró hacia atrás.</p>
+
+                <p>Miró a la chica con un rostro caído. Ella se entristeció debido a que su vida ha sido tranquila en su mayoría, pero la del guarda ha sido dura.</p>
+
+                <p><span class="dialogue">—¿¡Qué cargas que tanto te pesa, eh!?</span> —gritó—. <span class="dialogue">Te he escuchado decir tantas cosas sobre tu vida y sobre ti, ¡solo haces que me entristezca más!</span></p>
+
+                <p>El guarda agachó la cabeza, pensativo.</p>
+
+                <p><span class="dialogue">—No te cuento sobre mí para que te entristezcas, niña, solo quiero que entiendas por qué no te maté cuando pude.</span></p>
+
+                <p><span class="dialogue">—«Niña», agh</span> —refunfuñó con molestia, desviando la mirada.</p>
+
+                <p>El guarda se giró para continuar con su viaje.</p>
+
+                <p><span class="dialogue">—Deberías contarme sobre ti. Así podré entender por qué querías matarme aun arriesgando tu vida.</span></p>
+
+                <p>Llegan a un risco junto a una cascada, árboles y más árboles hasta el horizonte. Los pájaros graznan y silban en armonía. Las nubes hermosean al sol en el atardecer.</p>
+
+                <p><span class="dialogue">—¿No dirás nada?</span> —cuestiona el guarda, mirando hacia abajo.</p>
+
+                <p>El vértigo lo sacudió, metros de altura y solo la poza al pie de la cascada.</p>
+
+                <p><span class="dialogue">—No he vivido las mismas cosas que tú… Bueno. Mi tribu se basa en el mérito. Yo quería ser soldado, pero no pude superar las pruebas; así que decidí cazar, y no me ha ido mal</span> —declaró con nervios, recordando esos días de decepción hacia su padre.</p>
+
+                <p>El guarda se giró para mirarla con un rostro de quien intuye lo que pasó.</p>
+
+                <p><span class="dialogue">—Y tu padre se decepcionó, ¿o me equivoco?</span> —ironizó con cierta dureza.</p>
+
+                <p><span class="dialogue">—Sí…</span> —agacha la cabeza—. <span class="dialogue">¡Pero ahora soy la mejor cazadora de mi tribu!</span></p>
+
+                <div class="section-break">🌿 ✦ 🌿</div>
+
+                <p>En ese momento, el crujido de las hojas desde la maleza los alertó. El guarda desenfundó su espada, encarándose hacia la maleza con su arma en alto.</p>
+
+                <p>Tres sujetos se revelaron de detrás de los árboles y la maleza, mostrándose con holgura en un intento de rodearlos.</p>
+
+                <p><span class="dialogue">—¡Ameřa!, tanto tiempo sin verte</span> —expresó el sujeto del medio con efusividad, alzando los brazos.</p>
+
+                <p>El guarda se extrañó: solo la tribu Häscht habitaba el norte del bosque.</p>
+
+                <p><span class="dialogue">—¿¡Quiénes son y qué quieren!?</span> —les gritó sin quitarles la mirada.</p>
+
+                <p>Los dos sujetos se movían hacia sus costados con sus manos en la empuñadura.</p>
+
+                <p><span class="dialogue">—¿Qué haces aquí, gricano?</span> —ironizó mientras se les acercaba—. <span class="dialogue">¿Acaso huiste de tu reino derrocado?</span></p>
+
+                <p>El guarda intentaba mantener la distancia en tanto protegía a la chica. Se agudizaba un dolor en el hombro debido al estrés del momento. Él golpeaba el aire para alejarlos, pero solo podrían retroceder. Un escalofrío se deslizó por todo su cuerpo como un estímulo. Agarró la empuñadura de su espada con más fuerza.</p>
+
+                <p>El sujeto del medio engrandecía su sonrisa debido al miedo que ellos mostraban. De pronto, les gesticuló con su rostro para que sacaran sus espadas.</p>
+
+                <p>La chica temía que el sujeto estuviera ahí enfrente: eso reflejaba que ya no había impedimento para que la tribu enemiga los atacara.</p>
+
+                <p>Ella se protegía detrás del guarda, con cuidado sacó su daga de debajo de su morral a la que se sujetaba. En un movimiento sigiloso lanzó su daga hacia el rostro del sujeto a su siniestra, matándolo.</p>
+
+                <p>Entonces ambos aprovecharon el momento para huir de ellos. El de la derecha intentó perseguirlos, pero el otro se lo impidió.</p>
+
+                <p><span class="dialogue">—No los persigas, no podremos seguirles el paso</span> —aclaró mientras los avistaba.</p>
+
+                <p>El hombre envainó su espada y revisó el cuerpo de su compañero muerto. El otro sacó la daga del ojo, analizando las marcas häscht en el acero.</p>
+
+                <p>El guarda empezó a dolerse en su costado izquierdo y enseguida el dolor aumentó. Se apoyó en un árbol a revisar la herida, se había abierto y él puso su mano para evitar el sangrado.</p>
+
+                <p>La chica iba delante y miró atrás, percatándose de que él se había detenido debido a la herida.</p>
+
+                <p>Ella se consternó y el remordimiento le pegó al pecho. Se quitó su abrigo y también su camisa para impedir el sangrado.</p>
+
+                <p>El guarda se dolía ansioso, cubriendo el corte con la camisa. Ella se colocó su abrigo mientras él la observaba mientras sentía la sangre salir.</p>
+
+                <p><span class="dialogue">—¿Estarás bien?</span> —preguntó la chica con nervios.</p>
+
+                <p><span class="dialogue">—Sí… Necesito que cosas la herida ahora</span> —declaró resistiendo el dolor.</p>
+
+                <p>Ella revisó el abrigo del guarda, encontrando hilo y aguja en un estuche. Él se quitó la camisa y ella empezó a incrustar la aguja con detenimiento en su costado.</p>
+
+                <p>El guarda prorrumpió en dolor, moviéndose sin control. Su diestra golpeaba la tierra y sus dientes mordían fuerte.</p>
+
+                <p><span class="dialogue">—¡Oye, oye, oye! Muerde esto</span> —ella le entregó un palito del suelo, con lo que él usó para liberar su dolor.</p>
+
+                <p>Las venas del rostro se marcaban. Él deseaba que terminara pronto, cada agujazo le recordaba la guerra y el daño en su pierna que recibió. Esas punzadas que parecían interminables que sacudían su cuerpo. En esa pierna, aguja tras aguja, un suplicio en que no cabían segundos para recuperarse.</p>
+
+                <p>Él cayó inconsciente hacia su diestra mientras la chica evitaba el golpe con el suelo. Ella lo miraba con nervios sin saber qué hacer.</p>
+
+                <p>Entonces el guarda apareció sobre las aguas de un lago. Observó a todos lados con desesperación. Frente a él se personó su hermana otra vez, mirándolo con un rostro crítico.</p>
+
+                <p><span class="dialogue">—Huiste</span> —mencionó su hermana con sorpresa—. <span class="dialogue">¿Qué cambió?</span></p>
+
+                <p>Él pensó en qué responderle.</p>
+
+                <p><span class="dialogue">—Yo no sé…</span> —pensativo—. <span class="dialogue">Creo que ahora encontré un motivo, pero no quiero olvidarte. Quisiera que estuvieras aquí: este reino fue derrocado y tú no estás conmigo para disfrutarlo.</span></p>
+
+                <p>Ella le sonrió, mostrando esperanza. El guarda sentía melancolía, como una aguja fina pero molesta en su pecho.</p>
+
+                <p><span class="dialogue">—Quiero que aproveches esta oportunidad para que sepas cada día que el sol vuelve a mostrarse: como la esperanza sobre el dolor.</span></p>
+
+                <p>El guarda da un paso hacia ella, intentando tocarla, pero su hermana se desvanece enseguida.</p>
+
+                <p>Abrió sus ojos con desánimo, mirando alrededor con cierto miedo. Solo había una fogata y unos palos al costado. El atardecer había caído, no hallando a la chica en ningún lado.</p>
+
+                <p>Revisó su herida con apuro: cosida y con plantas esenciales en su costado, aseguradas con finas cuerdas alrededor de su abdomen.</p>
+
+                <p>Él se sorprendió de manera grata, pero quería saber dónde había ido la chica.</p>
+
+                <p>Entonces la chica apareció frente a él por sorpresa, sosteniendo un pescado en sus manos. Ella le sonrió con orgullo, sabiendo que lo había sorprendido.</p>
+
+                <p><span class="dialogue">—¿Cuánto-cuánto tiempo estuve inconsciente?</span> —preguntó con extrañeza.</p>
+
+                <p>Ella incrustó el pescado en un palo y lo puso sobre la fogata, mostrando una larga sonrisa.</p>
+
+                <p><span class="dialogue">—Un día</span> —le aclaró sin molestia.</p>
+
+                <p>El guarda abrió los ojos con sorpresa y con la cabeza gacha exhaló, sentado en cuclillas y apoyando sus manos sobre sus rodillas.</p>
+
+                <p><span class="dialogue">—¿Y esos sujetos… se fueron?</span></p>
+
+                <p><span class="dialogue">—Sip.</span> —Escama el pescado frente a la fogata.</p>
+
+                <p>El guarda titubeó sobre lo que podría preguntarle para mejorar la conversación. Con sus dedos de su diestra pinza los de la siniestra, cuestionándose.</p>
+
+                <p><span class="dialogue">—¿Yyyyy… tienes familia?</span><br>
+                <span class="dialogue">—Padre, madre y hermano mayor</span> —afirma sin más.</p>
+
+                <p>Él se enervó debido a su respuesta corta. Los grillos con sus cantos rellenaron el vacío de su incertidumbre. Los rayos del sol desaparecían en el horizonte, tapado por las hojas que solo permiten entrever el cielo arrebolado.</p>
+
+                <p>La chica empaló el pescado y lo asó al espetón. Unos segundos de silencio de ambos, y ella percibió su nerviosismo de reojo. Esbozó una sonrisa orgullosa, de la cual el guarda se percata.</p>
+
+                <p><span class="dialogue">—Oye, Ameřa, ¿cuánto nos queda para llegar a tu tribu?</span> —cambió el tema.</p>
+
+                <p><span class="dialogue">—Dos días, creo. Debemos cruzar el río primero y llegar a las Tres Rocas, un lugar al pie del monte de mi aldea</span> —informó la chica—. <span class="dialogue">Y por cierto, no es «Amerra».</span></p>
+
+                <p>Heya frunció el ceño, confundido.</p>
+
+                <p><span class="dialogue">—¿Y cómo es?</span></p>
+
+                <p><span class="dialogue">—«Ameřa». Raspas la glotis. Aunque, claro, tu lengua es diferente de la mía.</span></p>
+
+                <p>Caminaron unos segundos de incomodidad sobre un poco pasto.</p>
+
+                <p><span class="dialogue">—Oye…</span> —titubeó—. <span class="dialogue">¿Qué debería esperar de tu tribu? ¿Ellos llegarían a confiar en mí?</span> —preguntó con desconfianza, apretando la punta de sus dedos.</p>
+
+                <p>Ella se puso pensativa. La oscuridad de la noche penumbró el ambiente forestal.</p>
+
+                <p><span class="dialogue">—Bueno… Si le agradas a mi padre, la gente te aceptaría</span> —dudosa.</p>
+
+                <p><span class="dialogue">—¿Y si no?</span></p>
+
+                <p><span class="dialogue">—Yo les mostraría que sí pueden confiar en ti</span> —afirma con una gran sonrisa.</p>
+
+                <p>Él se rasca el cabello cuestionándose la ayuda de la chica.</p>
+
+                <p><span class="dialogue">—¿Por qué sigues aquí conmigo?</span> —declaró con lamento, mirándola a los ojos.</p>
+
+                <p>Ella agachó la cabeza, pensando cómo responderle.</p>
+
+                <p><span class="dialogue">—Bueno… me gustaría entender por qué un gricano, que tuvo la oportunidad de matar a alguien de una tribu enemiga, no lo hizo e incluso la salvó</span> —afirmó con voz serena y desviando la mirada.</p>
+
+                <p>Sus palabras lo golpearon en el pecho. Había pasado meses solo en esa torre fronteriza a tal punto que olvidó lo que se siente que alguien se interese en él.</p>
+
+                <p>Ese sentimiento le recordó un día de siega con su padre. Con las guadañas a mano, su padre se quitó los guantes y se los entregó a él. Fue un momento de sucesión: ahora él segaba y su padre recogía el trigo.</p>
+
+                <p>Hecha la noche, la fogata se apagó y el frío hacía que el guarda tiritara. La chica despertó debido a los sonidos de él. Se acercó a su lado, puso su manta sobre la de él, quedándose bajo las mantas, y lo abrazó.</p>
+
+                <p><span class="dialogue">—¿Eh?, ¿qué haces?</span> —cuestionó el guarda, somnoliento.</p>
+
+                <p><span class="dialogue">—Estás tiritando.</span> —Ella colocó su mano sobre su cuello, sintiendo el frío.</p>
+
+                <p><span class="dialogue">—¿La noche anterior también tirité?</span> —confundido, mirándola de reojo.</p>
+
+                <p><span class="dialogue">—Mhmm, sí, así que esta vez traje más leña, pero parece que no funcionó</span> —miró a la fogata con una mirada enojada—. <span class="dialogue">¿Cómo sientes la herida?</span></p>
+
+                <p><span class="dialogue">—Bien…</span> —Recuesta su cabeza sobre su morral—. <span class="dialogue">Oye, no me has dicho tu nombre, ¿o no? Ya no recuerdo.</span></p>
+
+                <p><span class="dialogue">—Me llamo Ameřa, hija de Derk. ¿Y tú, guarda?</span></p>
+
+                <p><span class="dialogue">—Heya</span> —murmuró, pensativo.</p>
+
+                <p><span class="dialogue">—Mhmm, parece nombre de mujer</span> —se burló con una risa ligera.</p>
+
+                <p>Él se giró hacia ella, enseriado.</p>
+
+                <p><span class="dialogue">—¡Qué!? ¡No!</span> —aclaró—. <span class="dialogue">Significa «soldado».</span></p>
+
+                <p>Ameřa lo miraba con unos ojos iluminados. Ella se apoyó en su pecho, viéndolo con una sonrisa burlona.</p>
+
+                <p><span class="dialogue">—Bien, puede ser. ¡Pero no lo es!</span> —mencionó dándose la vuelta, lo que la sorprendió malamente.</p>
+
+                <div class="section-break">🌿 ✦ 🌿</div>
+
+                <p>Al día siguiente continuaron el recorrido hacia la aldea. Ameřa revoloteaba con un semblante alegre, pateando las hojas amarillentas, mientras que Heya la veía con una sonrisa ligera.</p>
+
+                <p>Heya se sentía extraño: le recordaba a su hermana en esos días de otoño, cuando acumulaban un montón de hojas y se lanzaban sin preocupación por lo venidero. Esos momentos que había olvidado.</p>
+
+                <p><span class="dialogue">—Oye</span> —se giró hacia él—, <span class="dialogue">¿no dirás nada?</span> —caminado hacia atrás.</p>
+
+                <p><span class="dialogue">—Qué puedo decir. No suelo ver gente como tú</span> —afirmó Heya, con una sonrisa.</p>
+
+                <p><span class="dialogue">—Bueno, eso ya quedó en el pasado.</span></p>
+
+                <p>Ella caminaba con una soltura que solo había visto en su hermana. Los haces de luz que atravesaban las hojas frondosas de las copas de los árboles chocaban en su rostro, eso empezó a activar un sentimiento que no percibía hace muchos años: amor.</p>
+
+                <p>Su corazón se había endurecido debido a la milicia egoísta, donde nadie se fiaba de los compañeros o rescataba al herido. Recordó ese momento en que fue herido en la pierna: nadie fue a rescatarlo, él tuvo que arrastrarse sobre el barro durante varios metros, hasta que por fin fue llevado a curarlo.</p>
+
+                <p><span class="dialogue">—Oye, ¿en qué piensas tanto?</span> —preguntó con una postura enérgica, frente a él.</p>
+
+                <p>Él dejó su ensoñación, mirando a todos lados con confusión. El río caudal enfrente y más árboles al otro lado.</p>
+
+                <p><span class="dialogue">—Ah, tan solo recordaba unas cosas</span> —serio.</p>
+
+                <p><span class="dialogue">—Okey</span> —gentil—. <span class="dialogue">Debemos encontrar la forma de cruzarlo. ¿Tú cómo lo harías?</span> —con una sonrisa extendida y unos ojos abiertos.</p>
+
+                <p>Heya observó la extensión del río impetuoso de larga anchura, avistando un cúmulo de rocas a unos metros a la derecha.</p>
+
+                <p><span class="dialogue">—Allí podremos pasar</span> —indicó con su mano.</p>
+
+                <p><span class="dialogue">—Perfecto</span> —caminó hacia el lugar sin bajar su buen ánimo.</p>
+
+                <p>El ánimo de Ameřa lo sentía extraño: como llegar a un lugar cálido después de caminar en la nieve. Era cálido para él volver a sentir ese ánimo como el de su hermana. Vivir años de soledad y sufrimiento era solo una pesadilla, que se había convertido en árboles más verdes y en unos ojos celestes con los que no podías apartar la vista.</p>
+
+                <p>Llegaron al borde del río. Las aguas feroces circulaban a través de las rocas. Ameřa empezaba a respirar rápido debido al nerviosismo. La anchura del río era de varios metros.</p>
+
+                <p><span class="dialogue">—¿Estás bien?</span> —preguntó Heya a su lado—. <span class="dialogue">Yo iré primero.</span></p>
+
+                <p><span class="dialogue">—Eeeh, sí. Es que este río siempre ha sido turbulento.</span></p>
+
+                <p>Heya se aventuró y se paró sobre la primera roca con sus brazos alzados para mantenerse equilibrado.</p>
+
+                <p><span class="dialogue">—¿Y por qué no construían un puente?</span> —cuestionó Heya, extendiéndole la mano.</p>
+
+                <p>Ella tomó su mano con nervios y se quedó a su lado.</p>
+
+                <p><span class="dialogue">—Había uno, pero el río se lo llevó.</span></p>
+
+                <p>Ambos cruzaron cada roca con cuidado, mientras las aguas chocan y los empapan. Cada paso, cada roca superada. Luego se toparon con un espacio sin rocas cerca de la orilla.</p>
+
+                <p>Heya se impulsa, alcanzando el otro lado. Ameřa lo mira ojos saltones, llenos de miedo.</p>
+
+                <p><span class="dialogue">—No mires abajo, solo a mí, ¿okey?</span> —con sus manos hacia ella.</p>
+
+                <p>Pero ella miró abajo y una sensación sacudió todo su cuerpo. El ruido de las aguas chocando y la posibilidad de caer la desconcentraban.</p>
+
+                <p><span class="dialogue">—Ameřa, ¡mírame a mí!</span> —gritó sin quitarle la vista.</p>
+
+                <p>Ella se enervaba cada vez más y la roca empezaba a sacudirse. Por instinto saltó, el río se llevó la roca y Ameřa cayó sobre él. Heya le ayudó a levantarse, ambos tomados de la mano. Ameřa bajó la mirada con asombro y nervios. Él la soltó de inmediato debido al nerviosismo provocado tras años de soledad.</p>
+
+                <p><span class="dialogue">—Oh, ¿estás bien?</span> —preguntó Heya, nervioso.</p>
+
+                <p><span class="dialogue">—¡Sí!</span> —aliviada—. <span class="dialogue">Eso fue… ¡genial!</span> —declaró, animada.</p>
+
+                <p>Heya la miró mientras ella sonreía entre risas exaltadas. Memorias iban y venían a su mente. Días de otoño y primavera con su hermana. Momentos de juegos y risas, que antes deseaba olvidar, tornaron al color que antes no tenían. Para él, tener esa gran sonrisa enfrente fue el inicio del color en su corazón; el deseo de vivir volvió a emerger.</p>
+
+                <p>Ambos continuaron el camino hacia la aldea principal. El bosque amarillento arrojaba hojas por montón. A veces sus pies se hundían en las hojas, a veces Ameřa jugaba con ellas como una niña, lanzando y pateando las minimontañas de hojas.</p>
+
+                <p>Mientras Heya la observaba jugar, una sonrisa por fin mostró. Ameřa se giró y lo miró, ella se quedó quieta a unos metros de él.</p>
+
+                <p><span class="dialogue">—¿Y esa sonrisa? ¿Creo que no te había visto sonreír, Heya?</span> —ella se le acerca lento, sin quitarle la mirada—. <span class="dialogue">Se siente bien sonreír, ¿cierto?</span></p>
+
+                <p>Ameřa deslizó su mano hasta su nuca y Heya la acercó desde la cintura con sus manos.</p>
+
+                <p><span class="dialogue">—Heya, creo que has estado solo mucho tiempo</span> —murmura, frente a frente—. <span class="dialogue">Si quieres, puedes estar conmigo</span> —le sonríe con gozo.</p>
+
+                <p>Él solo la miró y sus ojos no se abstuvieron de observar sus iris celestes, pero por dentro dudaba, recordando esos días coloridos con su familia. En esa torre él soñaba con su familia a menudo: los juegos con su hermana, la siega con su padre y el horneado de ricos panes con su madre.</p>
+
+                <p>Heya no quería dejar de soñar con su familia, pero sabía que su futuro era Ameřa. A él le dolía recordar que su familia fue asesinada a manos de su propio reino y que no pudo hacer algo al respecto.</p>
+
+                <p>Ante sí mismo el color había regresar junto con el amor que pensó que jamás volvería a experimentar.</p>
+
+                <p>Entonces, Heya se aproximó a ella y la tomó por la nuca. Ella, con los ojos cerrados, acercó sus labios a los de él, mientras también lo tomaba por la nuca.</p>
+
+                <p>Antes de que sus labios se tocaran, la fractura de las hojas los alertó. Heya se giró hacia su diestra: cuatro guardias y dos arqueros häscht los apuntaban con sus armas.</p>
+
+                <p>Ameřa corrió hacia uno de ellos, su hermano, abalanzándose sobre él. Ambos se abrazaron con mucho tacto debido a que no se veían desde hace muchos días.</p>
+
+                <p>Heya los miraba mientras los arqueros lo apuntaban con sus arcos prestos.</p>
+
+                <p><span class="dialogue">—Ameřa, ¿dónde estabas? La tribu del este ha estado acercándose más hacia nosotros</span> —declaró con preocupación.</p>
+
+                <p><span class="dialogue">—Tranquilo, Lomen. Él me protegió de ellos</span> —apuntó a Heya con su mano.</p>
+
+                <p>Lomen lo miró enseguida con un rostro asombrado.</p>
+
+                <p><span class="dialogue">—¿«Protegió»? ¿Te atacaron?</span> —la revisó en busca de heridas.</p>
+
+                <p>Ella alejó las manos de Lomen con nervios porque Heya los miraba.</p>
+
+                <p><span class="dialogue">—Estoy bieeen. Heya mató a uno de ellos y el resto huyó</span> —le aclaró aún con nervios.</p>
+
+                <p>Lomen se alivió y su rostro preocupado se tranquilizó.</p>
+
+                <p>Heya se sentía amenazado, así que Lomen les gesticuló con su mano a los arqueros para que guardaran los arcos.</p>
+
+                <p>Su hermano se acercó a Heya y le extendió su mano abierta, las estrecharon mirándose fijamente a los ojos como muestra de respeto.</p>
+
+                <p><span class="dialogue">—«Heya», ¿verdad? Agradezco que salvaras a mi hermanita.</span></p>
+
+                <p>Heya lo miraba con desconfianza, pero presentía que no era una amenaza. Entonces, mientras Lomen regresaba hacia sus compañeros, Ameřa se acercó revoloteando con una sonrisa exaltada.</p>
+
+                <p><span class="dialogue">—¿Quieres conocer mi aldea?</span> —le preguntó, animada, esperando un sí.</p>
+
+                <p>Ella no dejaba de mirarlo con esos ojos celestes a los que no puedes apartar la mirada. Esto lo incomodaba a la vez que lo atraía.</p>
+
+                <p><span class="dialogue">—No quiero que tengas un mal rato conmigo. Lo mejor es que regrese a mi reino</span> —le aclaró con lamento.</p>
+
+                <p>Ameřa bajó la mirada con decepción. Él no quería lastimarla, y creía que si se iba de su tierra, sus padres y su hermanita se molestarían; a pesar de que su hermanita le había aclarado lo contrario.</p>
+
+                <p><span class="dialogue">—¿Y si no?… ¿Y si les mostramos que hay gricanos bondadosos como tú?</span> —Ella posó su mano en el pecho de Heya—. <span class="dialogue">Heya, allá no está tu futuro… yo puedo serlo, si vienes conmigo.</span></p>
+
+                <p>Sus latidos se apresuraban como mensajeros de su corazón que declaraban que con ella debía quedarse. Esas memorias de su pasado regresaron para darle el último gran sabor: una mañana, Heya y su hermanita subieron al monte antes de que saliera el sol. Era una vista pacífica: la ilusión de que siempre sería así.</p>
+
+                <p><span class="dialogue">—Ja, creo que tu corazón me dijo lo que tu boca no</span> —afirmó con sorpresa.</p>
+
+                <p>Heya la miraba con indecisión esos ojos cautivadores. Su cuerpo y mente querían ir con ella, pero su alma aún dudaba.</p>
+
+                <p><span class="dialogue">—Sí…</span> —murmuró con alivio liberador.</p>
+
+                <p>De repente, Heya la tomó por las mejillas, besándola como quien salta de un risco hacia lo que sabe que le traerá alegría.</p>
+
+                <p>En tanto, Lomen conversaba con uno de sus compañeros cuando el mismo le señaló al par de tórtolos que se besuqueaban con pasión. Él se quedó atónito y su compañero se partía de risa contenida.</p>
+
+                <p>Heya quemó los barcos con decisión, adoptando su presente con Ameřa. Entendió que sus recuerdos son para impulsarlo a avanzar, no para sujetarlo al pasado.</p>
+
+                <p>Con este beso se demostraba a sí mismo quién sería la persona con la que crearía recuerdos excelsos. No olvidaba la memoria de su familia, pues ahora entendía que ellos habrían querido que tuviera un presente al que aferrarse, no a un pasado sin futuro.</p>
+
+                <p>Heya y Ameřa alejaron sus labios con lentitud, como si hubiera pegamento en ellos. Ella abrió los ojos con regocijo, aún sentía el toque en sus labios.</p>
+
+                <p><span class="dialogue">—Creo-creo que le vas a agradar a mi padre</span> —le declaró con satisfacción.</p>
+
+                <p>Ambos caminaron hacia la aldea en el monte decididos a enfrentar lo que venga, pues los embates no pueden romper su unión.</p>
+
+                <p>Y mientras ellos subían, Hesis los observaba desde el pie del monte con una sonrisa satisfecha.</p>
+            </main>
+
+            <!-- FOOTER FINAL -->
+            <footer style="text-align: center; margin-top: 50px; padding-top: 30px; border-top: 1px dashed var(--border-color); color: var(--text-muted); font-size: 14px;">
+                <p>✦ Fin de la historia ✦</p>
+                <p style="margin-top: 8px;"><em>Getting to Know — © 2025 Fernando Barra</em></p>
+            </footer>
+
+        </article>
+    </div>
+
+    <!-- Botón Volver Arriba -->
+    <button class="btn-top" id="btn-top" onclick="scrollToTop()" title="Volver arriba">↑</button>
+
+    <!-- Lógica de Control del Lector -->
+    <script>
+        // Control de barra de progreso de lectura
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+
+            // Mostrar u ocultar botón de volver arriba
+            const btnTop = document.getElementById('btn-top');
+            if (winScroll > 300) {
+                btnTop.classList.add('show');
+            } else {
+                btnTop.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Control de tamaño de fuente
+        let currentFontSize = 19;
+        function adjustFontSize(delta) {
+            currentFontSize = Math.min(Math.max(15, currentFontSize + delta), 26);
+            document.body.style.setProperty('--font-size-base', currentFontSize + 'px');
+        }
+
+        // Alternar tipografía
+        let isSerif = true;
+        function toggleFont() {
+            isSerif = !isSerif;
+            const btnFont = document.getElementById('btn-font');
+            if (isSerif) {
+                document.body.style.setProperty('--font-reader', "'Lora', Georgia, serif");
+                btnFont.innerText = 'Serif';
+            } else {
+                document.body.style.setProperty('--font-reader', "'Plus Jakarta Sans', sans-serif");
+                btnFont.innerText = 'Sans';
+            }
+        }
+
+        // Selección de temas
+        function setTheme(theme) {
+            document.body.classList.remove('theme-sepia', 'theme-dark');
+            document.getElementById('theme-white').classList.remove('active');
+            document.getElementById('theme-sepia').classList.remove('active');
+            document.getElementById('theme-dark').classList.remove('active');
+
+            if (theme === 'sepia') {
+                document.body.classList.add('theme-sepia');
+                document.getElementById('theme-sepia').classList.add('active');
+            } else if (theme === 'dark') {
+                document.body.classList.add('theme-dark');
+                document.getElementById('theme-dark').classList.add('active');
+            } else {
+                document.getElementById('theme-white').classList.add('active');
+            }
+        }
+    </script>
+</body>
+
+</html>
