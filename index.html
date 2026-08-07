@@ -4,67 +4,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería de Fichas de Personajes - Getting to Know</title>
+    <title>Getting to Know - Menú Principal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
+
         html, body {
             width: 100%;
-            margin: 0;
-            padding: 30px 15px;
-            background-color: #081c15;
-            font-family: Georgia, serif;
-            color: #f4f9f4;
             min-height: 100vh;
+            background-color: #0c0906;
+            background-image: 
+                radial-gradient(circle at 50% 35%, rgba(197, 160, 89, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at 50% 100%, rgba(45, 106, 79, 0.15) 0%, transparent 70%);
+            font-family: 'Cinzel', Georgia, serif;
+            color: #f4f9f4;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
-        .contenedor-galeria {
+
+        /* VISTA PRINCIPAL (HERO MENU) */
+        .main-hub {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hub-title {
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            text-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.4),
+                0 0 40px rgba(197, 160, 89, 0.25);
+        }
+
+        .hub-subtitle {
+            font-size: 13px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #c5a059;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .hub-diamonds {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+            color: #c5a059;
+            font-size: 11px;
+            margin-bottom: 45px;
+            opacity: 0.85;
+        }
+
+        /* CONTENEDOR DE BOTONES */
+        .hub-options {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-bottom: 60px;
+        }
+
+        .btn-hub-option {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            width: 100%;
+            padding: 20px 24px;
+            background: linear-gradient(180deg, #1c1510 0%, #120e0a 100%);
+            border: 2px solid #a88946;
+            border-radius: 12px;
+            color: #ffffff;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 
+                0 6px 20px rgba(0, 0, 0, 0.6),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-hub-option:hover {
+            transform: translateY(-2px) scale(1.015);
+            border-color: #f0c952;
+            background: linear-gradient(180deg, #261d16 0%, #18120d 100%);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.8),
+                0 0 25px rgba(197, 160, 89, 0.35),
+                inset 0 1px 2px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-icon {
+            font-size: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+
+        /* FOOTER DEL HUB */
+        .hub-footer {
+            position: absolute;
+            bottom: 24px;
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #7a6845;
+            font-weight: 600;
+        }
+
+        /* SECCIÓN DE FICHAS (OCULTA HASTA ACTIVAR) */
+        #seccion-fichas {
+            display: none;
             width: 100%;
             max-width: 1000px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 50px 20px 80px 20px;
         }
+
+        #seccion-fichas.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fichas-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .fichas-titulo {
+            font-size: 30px;
+            color: #52b788;
+            margin-bottom: 10px;
+            letter-spacing: 1.5px;
+        }
+
+        .fichas-subtitulo {
+            font-family: 'Lora', serif;
+            font-size: 16px;
+            color: #b7e4c7;
+            font-style: italic;
+            margin-bottom: 25px;
+        }
+
+        .btn-volver-hub {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(45, 106, 79, 0.3);
+            border: 1px solid #52b788;
+            color: #d8f3dc;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-volver-hub:hover {
+            background-color: #2d6a4f;
+            color: #ffffff;
+        }
+
         .grid-personajes {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
             gap: 22px;
             width: 100%;
         }
+
         .tarjeta-item {
             background-color: #1b4332;
             border: 2px solid #52b788;
-            border-radius: 6px;
-            padding: 22px 18px;
+            border-radius: 8px;
+            padding: 24px 20px;
             text-align: center;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.5);
-            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
         }
+
         .tarjeta-item:hover {
-            transform: translateY(-3px);
+            transform: translateY(-4px);
             border-color: #74c69d;
-            box-shadow: 0 6px 22px rgba(0,0,0,0.7);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.7);
         }
-        @media (max-width: 768px) {
-            html, body {
-                padding: 20px 10px;
+
+        @media (max-width: 600px) {
+            .hub-options {
+                width: 100%;
+                padding: 0 10px;
             }
-            .titulo-principal {
-                font-size: 26px !important;
+
+            .btn-hub-option {
+                padding: 16px 18px;
+                font-size: 14px;
             }
-            .subtitulo {
-                font-size: 17px !important;
-            }
-            .grid-personajes {
-                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
-                gap: 16px !important;
-            }
-        }
-        @media (max-width: 480px) {
-            .grid-personajes {
-                grid-template-columns: 1fr !important;
+
+            .hub-footer {
+                position: relative;
+                bottom: 0;
+                margin-top: 20px;
             }
         }
     </style>
@@ -72,25 +242,52 @@
 
 <body>
 
-    <div class="contenedor-galeria">
-        <header style="text-align:center; max-width:750px; margin-bottom:35px; width:100%;">
-            <h1 class="titulo-principal" style="font-size:32px; color:#74c69d; margin:0 0 10px 0; letter-spacing:1.5px; text-shadow:2px 2px 4px rgba(0,0,0,0.8);">🍃 Getting to Know 🍃</h1>
-            <h2 class="subtitulo" style="font-size:20px; color:#d8f3dc; font-weight:normal; margin:0 0 15px 0; font-style:italic;">Galería de Fichas de Personajes</h2>
-            <p style="font-size:14px; color:#b7e4c7; line-height:1.6; margin:0 0 20px 0;">Colección oficial de fichas de los personajes de la obra. Haz clic en cualquier tarjeta para abrir su ficha detallada.</p>
-            
-            <a href="getting-to-know.html" style="display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg, #2d6a4f, #1b4332); color:#f4f9f4; text-decoration:none; padding:12px 24px; border-radius:30px; border:1px solid #52b788; font-size:15px; font-weight:bold; letter-spacing:0.5px; box-shadow:0 4px 15px rgba(0,0,0,0.4); transition:all 0.2s ease;">
-                <span>📖</span> Leer la Historia Completa: Getting to Know
-            </a>
-        </header>
+    <!-- VISTA MENU PRINCIPAL (HUB) -->
+    <main class="main-hub" id="main-hub">
+        <h1 class="hub-title">Getting to Know</h1>
+        <p class="hub-subtitle">Selecciona una opción</p>
+        
+        <div class="hub-diamonds">
+            <span>❖</span>
+            <span>❖</span>
+            <span>❖</span>
+        </div>
 
-        <main class="grid-personajes">
+        <div class="hub-options">
+            <button class="btn-hub-option" onclick="mostrarFichas()">
+                <span class="btn-icon">🛡️</span>
+                <span>Fichas de Personajes</span>
+            </button>
+
+            <a href="getting-to-know.html" class="btn-hub-option">
+                <span class="btn-icon">📖</span>
+                <span>Historia Completa</span>
+            </a>
+        </div>
+
+        <footer class="hub-footer">
+            Getting to Know © 2025 · Fernando Barra
+        </footer>
+    </main>
+
+    <!-- VISTA SECCIÓN FICHAS DE PERSONAJES -->
+    <section id="seccion-fichas">
+        <div class="fichas-header">
+            <h2 class="fichas-titulo">🍃 Fichas de Personajes 🍃</h2>
+            <p class="fichas-subtitulo">Explora los perfiles detallados de los personajes de la obra.</p>
+            <button class="btn-volver-hub" onclick="ocultarFichas()">
+                ← Volver al Menú Principal
+            </button>
+        </div>
+
+        <div class="grid-personajes">
 
             <a href="personajes/ficha-heya.html" style="text-decoration:none; color:inherit;">
                 <div class="tarjeta-item">
                     <span style="font-size:10px; color:#74c69d; letter-spacing:2.5px; text-transform:uppercase; display:block; margin-bottom:8px; font-weight:bold;">PROTAGONISTA</span>
                     <h3 style="margin:0 0 4px 0; font-size:22px; color:#f4f9f4; font-weight:bold;">Heya</h3>
                     <p style="margin:0 0 10px 0; font-size:13px; font-style:italic; color:#d8f3dc;">«El Guarda»</p>
-                    <p style="margin:0; font-size:13.5px; color:#b7e4c7; line-height:1.5;">Ex-guardia de frontera gricano y agricultor de corazón.</p>
+                    <p style="margin:0; font-family:'Lora', serif; font-size:13.5px; color:#b7e4c7; line-height:1.5;">Ex-guardia de frontera gricano y agricultor de corazón.</p>
                 </div>
             </a>
 
@@ -99,7 +296,7 @@
                     <span style="font-size:10px; color:#74c69d; letter-spacing:2.5px; text-transform:uppercase; display:block; margin-bottom:8px; font-weight:bold;">HEROÍNA TRIBAL</span>
                     <h3 style="margin:0 0 4px 0; font-size:22px; color:#f4f9f4; font-weight:bold;">Ameřa</h3>
                     <p style="margin:0 0 10px 0; font-size:13px; font-style:italic; color:#d8f3dc;">«Ameřa, hija de Derk»</p>
-                    <p style="margin:0; font-size:13.5px; color:#b7e4c7; line-height:1.5;">Cazadora audaz de la tribu Häscht de ojos celestes.</p>
+                    <p style="margin:0; font-family:'Lora', serif; font-size:13.5px; color:#b7e4c7; line-height:1.5;">Cazadora audaz de la tribu Häscht de ojos celestes.</p>
                 </div>
             </a>
 
@@ -108,7 +305,7 @@
                     <span style="font-size:10px; color:#74c69d; letter-spacing:2.5px; text-transform:uppercase; display:block; margin-bottom:8px; font-weight:bold;">GUÍA ESPIRITUAL</span>
                     <h3 style="margin:0 0 4px 0; font-size:22px; color:#f4f9f4; font-weight:bold;">Hesis</h3>
                     <p style="margin:0 0 10px 0; font-size:13px; font-style:italic; color:#d8f3dc;">«La hermanita»</p>
-                    <p style="margin:0; font-size:13.5px; color:#b7e4c7; line-height:1.5;">Voz de la conciencia y motivación en las visiones de Heya.</p>
+                    <p style="margin:0; font-family:'Lora', serif; font-size:13.5px; color:#b7e4c7; line-height:1.5;">Voz de la conciencia y motivación en las visiones de Heya.</p>
                 </div>
             </a>
 
@@ -116,7 +313,7 @@
                 <div class="tarjeta-item">
                     <span style="font-size:10px; color:#74c69d; letter-spacing:2.5px; text-transform:uppercase; display:block; margin-bottom:8px; font-weight:bold;">CAPITÁN DE LA GUARDIA</span>
                     <h3 style="margin:0 0 10px 0; font-size:22px; color:#f4f9f4; font-weight:bold;">Lomen</h3>
-                    <p style="margin:0; font-size:13.5px; color:#b7e4c7; line-height:1.5;">Guardián sensato y hermano mayor de Ameřa.</p>
+                    <p style="margin:0; font-family:'Lora', serif; font-size:13.5px; color:#b7e4c7; line-height:1.5;">Guardián sensato y hermano mayor de Ameřa.</p>
                 </div>
             </a>
 
@@ -125,17 +322,35 @@
                     <span style="font-size:10px; color:#74c69d; letter-spacing:2.5px; text-transform:uppercase; display:block; margin-bottom:8px; font-weight:bold;">PATRIARCA TRIBAL</span>
                     <h3 style="margin:0 0 4px 0; font-size:22px; color:#f4f9f4; font-weight:bold;">Derk</h3>
                     <p style="margin:0 0 10px 0; font-size:13px; font-style:italic; color:#d8f3dc;">«Líder de los Häscht»</p>
-                    <p style="margin:0; font-size:13.5px; color:#b7e4c7; line-height:1.5;">Líder respetado de la tribu Häscht bajo el principio del mérito.</p>
+                    <p style="margin:0; font-family:'Lora', serif; font-size:13.5px; color:#b7e4c7; line-height:1.5;">Líder respetado de la tribu Häscht bajo el principio del mérito.</p>
                 </div>
             </a>
 
-        </main>
+        </div>
+    </section>
 
-        <footer style="margin-top:45px; text-align:center; font-size:11.5px; color:#74c69d; opacity:0.85; width:100%;">
-            Archivo personal · Fernando Barra · Getting to Know © 2025
-        </footer>
-    </div>
+    <script>
+        function mostrarFichas() {
+            const seccion = document.getElementById('seccion-fichas');
+            seccion.classList.add('active');
+            window.location.hash = 'fichas';
+            seccion.scrollIntoView({ behavior: 'smooth' });
+        }
 
+        function ocultarFichas() {
+            const seccion = document.getElementById('seccion-fichas');
+            seccion.classList.remove('active');
+            window.location.hash = '';
+            document.getElementById('main-hub').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Detectar si el usuario abre directamente con el hash #fichas
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.location.hash === '#fichas') {
+                mostrarFichas();
+            }
+        });
+    </script>
 </body>
 
 </html>
