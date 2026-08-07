@@ -18,12 +18,12 @@
         html, body {
             width: 100%;
             min-height: 100vh;
-            background-color: #0c0906;
+            background-color: #f7faf7;
             background-image: 
-                radial-gradient(circle at 50% 35%, rgba(197, 160, 89, 0.12) 0%, transparent 60%),
-                radial-gradient(circle at 50% 100%, rgba(45, 106, 79, 0.15) 0%, transparent 70%);
+                radial-gradient(circle at 50% 30%, rgba(82, 183, 136, 0.14) 0%, transparent 65%),
+                radial-gradient(circle at 50% 90%, rgba(45, 106, 79, 0.08) 0%, transparent 70%);
             font-family: 'Cinzel', Georgia, serif;
-            color: #f4f9f4;
+            color: #1b4332;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
@@ -41,22 +41,20 @@
         }
 
         .hub-title {
-            font-size: clamp(32px, 6vw, 56px);
+            font-size: clamp(34px, 6.5vw, 58px);
             font-weight: 900;
-            color: #ffffff;
+            color: #1b4332;
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 14px;
-            text-shadow: 
-                0 0 20px rgba(255, 255, 255, 0.4),
-                0 0 40px rgba(197, 160, 89, 0.25);
+            text-shadow: 0 2px 12px rgba(45, 106, 79, 0.15);
         }
 
         .hub-subtitle {
             font-size: 13px;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: #c5a059;
+            color: #2d6a4f;
             font-weight: 700;
             margin-bottom: 22px;
         }
@@ -66,10 +64,10 @@
             gap: 16px;
             justify-content: center;
             align-items: center;
-            color: #c5a059;
+            color: #52b788;
             font-size: 11px;
             margin-bottom: 45px;
-            opacity: 0.85;
+            opacity: 0.9;
         }
 
         /* CONTENEDOR DE BOTONES */
@@ -89,10 +87,10 @@
             gap: 14px;
             width: 100%;
             padding: 20px 24px;
-            background: linear-gradient(180deg, #1c1510 0%, #120e0a 100%);
-            border: 2px solid #a88946;
+            background-color: #ffffff;
+            border: 2px solid #2d6a4f;
             border-radius: 12px;
-            color: #ffffff;
+            color: #1b4332;
             font-family: 'Cinzel', serif;
             font-size: 16px;
             font-weight: 700;
@@ -100,22 +98,18 @@
             text-transform: uppercase;
             text-decoration: none;
             cursor: pointer;
-            box-shadow: 
-                0 6px 20px rgba(0, 0, 0, 0.6),
-                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 18px rgba(45, 106, 79, 0.12);
             transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
-            overflow: hidden;
         }
 
         .btn-hub-option:hover {
             transform: translateY(-2px) scale(1.015);
-            border-color: #f0c952;
-            background: linear-gradient(180deg, #261d16 0%, #18120d 100%);
+            border-color: #52b788;
+            background-color: #e8f5e9;
             box-shadow: 
-                0 10px 30px rgba(0, 0, 0, 0.8),
-                0 0 25px rgba(197, 160, 89, 0.35),
-                inset 0 1px 2px rgba(255, 255, 255, 0.2);
+                0 8px 25px rgba(45, 106, 79, 0.2),
+                0 0 20px rgba(82, 183, 136, 0.3);
         }
 
         .btn-icon {
@@ -123,7 +117,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 2px 4px rgba(45, 106, 79, 0.2));
         }
 
         /* FOOTER DEL HUB */
@@ -133,17 +127,17 @@
             font-size: 11px;
             letter-spacing: 2.5px;
             text-transform: uppercase;
-            color: #7a6845;
+            color: #2d6a4f;
             font-weight: 600;
         }
 
-        /* SECCIÓN DE FICHAS (OCULTA HASTA ACTIVAR) */
+        /* SECCIÓN DE FICHAS */
         #seccion-fichas {
             display: none;
             width: 100%;
             max-width: 1000px;
             margin: 0 auto;
-            padding: 50px 20px 80px 20px;
+            padding: 40px 20px 80px 20px;
         }
 
         #seccion-fichas.active {
@@ -156,37 +150,46 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        .fichas-contenedor {
+            background-color: #ffffff;
+            border: 2px solid #2d6a4f;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(45, 106, 79, 0.12);
+            padding: 40px 30px;
+        }
+
         .fichas-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
         }
 
         .fichas-titulo {
             font-size: 30px;
-            color: #52b788;
+            color: #1b4332;
             margin-bottom: 10px;
             letter-spacing: 1.5px;
         }
 
         .fichas-subtitulo {
             font-family: 'Lora', serif;
-            font-size: 16px;
-            color: #b7e4c7;
+            font-size: 15px;
+            color: #2d6a4f;
             font-style: italic;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .btn-volver-hub {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background-color: rgba(45, 106, 79, 0.3);
-            border: 1px solid #52b788;
-            color: #d8f3dc;
-            padding: 8px 18px;
+            background-color: #e8f5e9;
+            border: 1px solid #2d6a4f;
+            color: #1b4332;
+            padding: 8px 20px;
             border-radius: 20px;
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -205,19 +208,20 @@
         }
 
         .tarjeta-item {
-            background-color: #1b4332;
-            border: 2px solid #52b788;
+            background-color: #f4f9f4;
+            border: 2px solid #2d6a4f;
             border-radius: 8px;
             padding: 24px 20px;
             text-align: center;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 14px rgba(45, 106, 79, 0.1);
             transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
         }
 
         .tarjeta-item:hover {
             transform: translateY(-4px);
-            border-color: #74c69d;
-            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.7);
+            border-color: #52b788;
+            box-shadow: 0 8px 24px rgba(45, 106, 79, 0.2);
+            background-color: #ffffff;
         }
 
         @media (max-width: 600px) {
@@ -229,6 +233,10 @@
             .btn-hub-option {
                 padding: 16px 18px;
                 font-size: 14px;
+            }
+
+            .fichas-contenedor {
+                padding: 24px 16px;
             }
 
             .hub-footer {
@@ -261,7 +269,7 @@
 
             <a href="getting-to-know.html" class="btn-hub-option">
                 <span class="btn-icon">📖</span>
-                <span>Historia Completa</span>
+                <span>Lista de Capítulos</span>
             </a>
         </div>
 
@@ -272,60 +280,62 @@
 
     <!-- VISTA SECCIÓN FICHAS DE PERSONAJES -->
     <section id="seccion-fichas">
-        <div class="fichas-header">
-            <h2 class="fichas-titulo">🍃 Fichas de Personajes 🍃</h2>
-            <p class="fichas-subtitulo">Explora los perfiles detallados de los personajes de la obra.</p>
-            <button class="btn-volver-hub" onclick="ocultarFichas()">
-                ← Volver al Menú Principal
-            </button>
-        </div>
+        <div class="fichas-contenedor">
+            <div class="fichas-header">
+                <h2 class="fichas-titulo">🍃 Fichas de Personajes 🍃</h2>
+                <p class="fichas-subtitulo">Explora los perfiles detallados de los personajes de la obra.</p>
+                <button class="btn-volver-hub" onclick="ocultarFichas()">
+                    ← Volver al Menú Principal
+                </button>
+            </div>
 
-        <div class="grid-personajes">
+            <div class="grid-personajes">
 
-            <a href="personajes/ficha-heya.html" style="text-decoration:none; color:inherit;">
-                <div class="tarjeta-item">
-                    <span style="font-size:10px; color:#74c69d; letter-spacing:2.5px; text-transform:uppercase; display:block; margin-bottom:8px; font-weight:bold;">PROTAGONISTA</span>
-                    <h3 style="margin:0 0 4px 0; font-size:22px; color:#f4f9f4; font-weight:bold;">Heya</h3>
-                    <p style="margin:0 0 10px 0; font-size:13px; font-style:italic; color:#d8f3dc;">«El Guarda»</p>
-                    <p style="margin:0; font-family:'Lora', serif; font-size:13.5px; color:#b7e4c7; line-height:1.5;">Ex-guardia de frontera gricano y agricultor de corazón.</p>
-                </div>
-            </a>
+                <a href="personajes/ficha-heya.html" style="text-decoration:none; color:inherit;">
+                    <div class="tarjeta-item">
+                        <span style="font-size:10px; color:#2d6a4f; letter-spacing:2.5px; text-transform:uppercase; display:block; margin-bottom:8px; font-weight:bold;">PROTAGONISTA</span>
+                        <h3 style="margin:0 0 4px 0; font-size:22px; color:#1b4332; font-weight:bold;">Heya</h3>
+                        <p style="margin:0 0 10px 0; font-size:13px; font-style:italic; color:#2d6a4f;">«El Guarda»</p>
+                        <p style="margin:0; font-family:'Lora', serif; font-size:13.5px; color:#2d6a4f; line-height:1.5;">Ex-guardia de frontera gricano y agricultor de corazón.</p>
+                    </div>
+                </a>
 
-            <a href="personajes/ficha-amera.html" style="text-decoration:none; color:inherit;">
-                <div class="tarjeta-item">
-                    <span style="font-size:10px; color:#74c69d; letter-spacing:2.5px; text-transform:uppercase; display:block; margin-bottom:8px; font-weight:bold;">HEROÍNA TRIBAL</span>
-                    <h3 style="margin:0 0 4px 0; font-size:22px; color:#f4f9f4; font-weight:bold;">Ameřa</h3>
-                    <p style="margin:0 0 10px 0; font-size:13px; font-style:italic; color:#d8f3dc;">«Ameřa, hija de Derk»</p>
-                    <p style="margin:0; font-family:'Lora', serif; font-size:13.5px; color:#b7e4c7; line-height:1.5;">Cazadora audaz de la tribu Häscht de ojos celestes.</p>
-                </div>
-            </a>
+                <a href="personajes/ficha-amera.html" style="text-decoration:none; color:inherit;">
+                    <div class="tarjeta-item">
+                        <span style="font-size:10px; color:#2d6a4f; letter-spacing:2.5px; text-transform:uppercase; display:block; margin-bottom:8px; font-weight:bold;">HEROÍNA TRIBAL</span>
+                        <h3 style="margin:0 0 4px 0; font-size:22px; color:#1b4332; font-weight:bold;">Ameřa</h3>
+                        <p style="margin:0 0 10px 0; font-size:13px; font-style:italic; color:#2d6a4f;">«Ameřa, hija de Derk»</p>
+                        <p style="margin:0; font-family:'Lora', serif; font-size:13.5px; color:#2d6a4f; line-height:1.5;">Cazadora audaz de la tribu Häscht de ojos celestes.</p>
+                    </div>
+                </a>
 
-            <a href="personajes/ficha-hesis.html" style="text-decoration:none; color:inherit;">
-                <div class="tarjeta-item">
-                    <span style="font-size:10px; color:#74c69d; letter-spacing:2.5px; text-transform:uppercase; display:block; margin-bottom:8px; font-weight:bold;">GUÍA ESPIRITUAL</span>
-                    <h3 style="margin:0 0 4px 0; font-size:22px; color:#f4f9f4; font-weight:bold;">Hesis</h3>
-                    <p style="margin:0 0 10px 0; font-size:13px; font-style:italic; color:#d8f3dc;">«La hermanita»</p>
-                    <p style="margin:0; font-family:'Lora', serif; font-size:13.5px; color:#b7e4c7; line-height:1.5;">Voz de la conciencia y motivación en las visiones de Heya.</p>
-                </div>
-            </a>
+                <a href="personajes/ficha-hesis.html" style="text-decoration:none; color:inherit;">
+                    <div class="tarjeta-item">
+                        <span style="font-size:10px; color:#2d6a4f; letter-spacing:2.5px; text-transform:uppercase; display:block; margin-bottom:8px; font-weight:bold;">GUÍA ESPIRITUAL</span>
+                        <h3 style="margin:0 0 4px 0; font-size:22px; color:#1b4332; font-weight:bold;">Hesis</h3>
+                        <p style="margin:0 0 10px 0; font-size:13px; font-style:italic; color:#2d6a4f;">«La hermanita»</p>
+                        <p style="margin:0; font-family:'Lora', serif; font-size:13.5px; color:#2d6a4f; line-height:1.5;">Voz de la conciencia y motivación en las visiones de Heya.</p>
+                    </div>
+                </a>
 
-            <a href="personajes/ficha-lomen.html" style="text-decoration:none; color:inherit;">
-                <div class="tarjeta-item">
-                    <span style="font-size:10px; color:#74c69d; letter-spacing:2.5px; text-transform:uppercase; display:block; margin-bottom:8px; font-weight:bold;">CAPITÁN DE LA GUARDIA</span>
-                    <h3 style="margin:0 0 10px 0; font-size:22px; color:#f4f9f4; font-weight:bold;">Lomen</h3>
-                    <p style="margin:0; font-family:'Lora', serif; font-size:13.5px; color:#b7e4c7; line-height:1.5;">Guardián sensato y hermano mayor de Ameřa.</p>
-                </div>
-            </a>
+                <a href="personajes/ficha-lomen.html" style="text-decoration:none; color:inherit;">
+                    <div class="tarjeta-item">
+                        <span style="font-size:10px; color:#2d6a4f; letter-spacing:2.5px; text-transform:uppercase; display:block; margin-bottom:8px; font-weight:bold;">CAPITÁN DE LA GUARDIA</span>
+                        <h3 style="margin:0 0 10px 0; font-size:22px; color:#1b4332; font-weight:bold;">Lomen</h3>
+                        <p style="margin:0; font-family:'Lora', serif; font-size:13.5px; color:#2d6a4f; line-height:1.5;">Guardián sensato y hermano mayor de Ameřa.</p>
+                    </div>
+                </a>
 
-            <a href="personajes/ficha-derk.html" style="text-decoration:none; color:inherit;">
-                <div class="tarjeta-item">
-                    <span style="font-size:10px; color:#74c69d; letter-spacing:2.5px; text-transform:uppercase; display:block; margin-bottom:8px; font-weight:bold;">PATRIARCA TRIBAL</span>
-                    <h3 style="margin:0 0 4px 0; font-size:22px; color:#f4f9f4; font-weight:bold;">Derk</h3>
-                    <p style="margin:0 0 10px 0; font-size:13px; font-style:italic; color:#d8f3dc;">«Líder de los Häscht»</p>
-                    <p style="margin:0; font-family:'Lora', serif; font-size:13.5px; color:#b7e4c7; line-height:1.5;">Líder respetado de la tribu Häscht bajo el principio del mérito.</p>
-                </div>
-            </a>
+                <a href="personajes/ficha-derk.html" style="text-decoration:none; color:inherit;">
+                    <div class="tarjeta-item">
+                        <span style="font-size:10px; color:#2d6a4f; letter-spacing:2.5px; text-transform:uppercase; display:block; margin-bottom:8px; font-weight:bold;">PATRIARCA TRIBAL</span>
+                        <h3 style="margin:0 0 4px 0; font-size:22px; color:#1b4332; font-weight:bold;">Derk</h3>
+                        <p style="margin:0 0 10px 0; font-size:13px; font-style:italic; color:#2d6a4f;">«Líder de los Häscht»</p>
+                        <p style="margin:0; font-family:'Lora', serif; font-size:13.5px; color:#2d6a4f; line-height:1.5;">Líder respetado de la tribu Häscht bajo el principio del mérito.</p>
+                    </div>
+                </a>
 
+            </div>
         </div>
     </section>
 
